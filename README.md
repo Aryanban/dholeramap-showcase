@@ -150,14 +150,19 @@ flowchart TD
 
 ---
 
-## 🔒 Source Code & Proprietary Rights
+## 🔒 Source Code & Hackathon Evaluation Notice
 
 > [!IMPORTANT]  
-> **Proprietary Commercial Platform**  
-> DholeraMap.com is a commercial SaaS and land intelligence platform.  
-> The production codebase, tile generation pipeline, binary serialization tools, and compiled cadastral datasets are private intellectual property.  
+> **Source-Available Evaluation Repository**  
+> The core application source code (Next.js 15 App Router, TypeScript components, Web Worker spatial hit-testing engine, RFC 9727 API discovery, and content negotiation middleware) is included in this repository for technical evaluation and hackathon judging (**ForgeHacks 2026**).  
 > 
-> This public showcase demonstrates the actual system architecture, binary format design, and engineering decisions behind the platform.
+> **Moat & Data Protection**:  
+> To protect commercial intellectual property:  
+> 1. Multi-gigabyte statutory WGS84 tile pyramids (`/tiles/*`) and the compiled 18,161 parcel binary coordinate matrix (`parcels.bin`) are served from DholeraMap's production CDN edge and are substituted in this repository with lightweight verification fixtures (`public/tiles/sample/parcels.bin` and `public/data/`).  
+> 2. All live payment secrets, Clerk private keys, and production API credentials have been sanitized into [`.env.example`](.env.example).  
+> 3. All code is protected under the **Source-Available & Evaluation License** in [`LICENSE`](LICENSE), permitting technical review and competition judging while strictly prohibiting unauthorized commercial cloning, reproduction, or redistribution.  
+> 
+> To experience the full production platform with all 18,161 parcels and 6 Town Planning schemes, visit **[dholeramap.com](https://dholeramap.com)**.
 
 ---
 

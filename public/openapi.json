@@ -1,0 +1,203 @@
+{
+  "openapi": "3.1.0",
+  "info": {
+    "title": "DholeraMap API",
+    "description": "Statutory GIS atlas, Town Planning schemes, cadastral surveys, and land intelligence APIs for Dholera Special Investment Region (SIR), Gujarat, India.",
+    "version": "1.0.0",
+    "contact": {
+      "name": "DholeraMap Intelligence Desk",
+      "url": "https://dholeramap.com/contact",
+      "email": "support@dholeramap.com"
+    },
+    "license": {
+      "name": "Proprietary / Open Discovery",
+      "url": "https://dholeramap.com/terms"
+    }
+  },
+  "servers": [
+    {
+      "url": "https://dholeramap.com",
+      "description": "Production Server"
+    }
+  ],
+  "paths": {
+    "/api/health": {
+      "get": {
+        "summary": "System Health Status",
+        "description": "Returns operational health and availability status for DholeraMap API services.",
+        "operationId": "getHealthStatus",
+        "responses": {
+          "200": {
+            "description": "Service is healthy and accepting requests",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "status": { "type": "string", "example": "healthy" },
+                    "service": { "type": "string", "example": "dholeramap-api" },
+                    "version": { "type": "string", "example": "1.0.0" },
+                    "timestamp": { "type": "string", "format": "date-time" },
+                    "uptime": { "type": "number", "example": 124.5 }
+                  },
+                  "required": ["status", "service", "version", "timestamp"]
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/markdown": {
+      "get": {
+        "summary": "Markdown Representation for AI Agents",
+        "description": "Returns clean, formatting-stripped, token-optimized Markdown content for any page on DholeraMap via content negotiation (Accept: text/markdown).",
+        "operationId": "getMarkdownContent",
+        "parameters": [
+          {
+            "name": "path",
+            "in": "query",
+            "required": false,
+            "description": "Target page path to render into markdown (e.g. /village/ambli, /dholera-tp-map, /blog)",
+            "schema": { "type": "string", "default": "/" }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Clean Markdown document",
+            "headers": {
+              "x-markdown-tokens": {
+                "description": "Estimated token count of the returned markdown body",
+                "schema": { "type": "integer" }
+              },
+              "Vary": {
+                "description": "Vary header set to Accept for cache differentiation",
+                "schema": { "type": "string" }
+              }
+            },
+            "content": {
+              "text/markdown": {
+                "schema": { "type": "string" }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/brokers/ranking": {
+      "get": {
+        "summary": "Verified Broker Directory & Performance Ranking",
+        "description": "Returns verified real estate brokers in Dholera SIR ranked by RERA certification, verified deals, and client feedback score.",
+        "operationId": "getBrokerRanking",
+        "responses": {
+          "200": {
+            "description": "Array of verified brokers with verification status and contact links",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "properties": {
+                      "id": { "type": "string" },
+                      "name": { "type": "string" },
+                      "firm": { "type": "string" },
+                      "reraNumber": { "type": "string" },
+                      "rating": { "type": "number" },
+                      "dealsClosed": { "type": "integer" },
+                      "primaryVillages": {
+                        "type": "array",
+                        "items": { "type": "string" }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/create-order": {
+      "post": {
+        "summary": "Create Razorpay Payment Order",
+        "description": "Generates a cryptographically signed Razorpay order for purchasing plot intelligence dossiers or pro investor subscriptions.",
+        "operationId": "createOrder",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "plan": { "type": "string", "enum": ["starter", "pro", "enterprise", "dossier_single"] },
+                  "currency": { "type": "string", "default": "INR" }
+                },
+                "required": ["plan"]
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Order created successfully",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "orderId": { "type": "string" },
+                    "amount": { "type": "integer" },
+                    "currency": { "type": "string" },
+                    "keyId": { "type": "string" }
+                  }
+                }
+              }
+            }
+          },
+          "400": { "description": "Invalid plan or currency requested" }
+        }
+      }
+    },
+    "/api/verify-payment": {
+      "post": {
+        "summary": "Verify Cryptographic Payment Signature",
+        "description": "Validates payment authenticity using HMAC-SHA256 signature against Razorpay Key Secret before granting report access.",
+        "operationId": "verifyPayment",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "razorpay_order_id": { "type": "string" },
+                  "razorpay_payment_id": { "type": "string" },
+                  "razorpay_signature": { "type": "string" }
+                },
+                "required": ["razorpay_order_id", "razorpay_payment_id", "razorpay_signature"]
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Payment signature verified and entitlement granted",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "verified": { "type": "boolean", "example": true },
+                    "entitlement": { "type": "string" }
+                  }
+                }
+              }
+            }
+          },
+          "400": { "description": "Invalid cryptographic signature" }
+        }
+      }
+    }
+  }
+}

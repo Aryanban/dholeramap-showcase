@@ -1,0 +1,24 @@
+node_modules/
+.next/
+*.log
+.DS_Store
+.env*.local
+
+data/dholera_raw/
+.vercel
+.env
+.env*
+!.env.example
+public/maps/
+public/tiles/tp*
+.venv
+.verification_screenshots/
+*.tsbuildinfo
+.agents/
+skills-lock.json
+
+# Option B extraction workspace — must never be deployed (see dholerapipeline/docs/06)
+dholerapipeline/
+/pipeline/
+.whatsapp_session/
+offline_data/

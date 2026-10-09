@@ -1,0 +1,121 @@
+# robots.txt for https://dholeramap.com
+# Open crawl policy for Search Engines, AI Agents & Large Language Models (AEO / GEO)
+
+User-agent: *
+Disallow: /admin
+Disallow: /settings
+Disallow: /dashboard
+Disallow: /billing
+Disallow: /checkout
+Disallow: /api/
+Disallow: /sign-in
+Disallow: /sign-up
+Disallow: /verify/
+Allow: /
+Allow: /favicon.ico
+Allow: /icon.png
+Allow: /icon-16.png
+Allow: /icon-32.png
+Allow: /icon-48.png
+Allow: /icon-96.png
+Allow: /icon-192.png
+Allow: /apple-icon.png
+Allow: /apple-touch-icon.png
+Allow: /apple-touch-icon-precomposed.png
+Allow: /logo.png
+Allow: /logo-512.png
+Allow: /sitemap.xml
+Allow: /llms.txt
+Allow: /llms-full.txt
+Allow: /village/
+Allow: /survey/
+Allow: /blog/
+Allow: /data/
+Allow: /maps/
+Allow: /tiles/
+Allow: /og-image.png
+
+# Global Search Engine Crawlers
+User-agent: Googlebot
+Allow: /
+
+User-agent: Googlebot-Image
+Allow: /
+
+User-agent: Google-Favicon
+Allow: /
+Allow: /favicon.ico
+Allow: /icon.png
+Allow: /icon-48.png
+Allow: /icon-96.png
+Allow: /icon-144.png
+Allow: /icon-192.png
+Allow: /icon-512.png
+Allow: /apple-touch-icon.png
+
+User-agent: Bingbot
+Allow: /
+
+User-agent: Slurp
+Allow: /
+
+User-agent: DuckDuckBot
+Allow: /
+
+User-agent: Baiduspider
+Allow: /
+
+User-agent: YandexBot
+Allow: /
+
+User-agent: Applebot
+Allow: /
+
+# AI, LLM & Answer Engine Crawlers (AEO / GEO Optimization)
+User-agent: GPTBot
+Allow: /
+
+User-agent: ChatGPT-User
+Allow: /
+
+User-agent: OAI-SearchBot
+Allow: /
+
+User-agent: ClaudeBot
+Allow: /
+
+User-agent: anthropic-ai
+Allow: /
+
+User-agent: PerplexityBot
+Allow: /
+
+User-agent: Google-Extended
+Allow: /
+
+User-agent: Applebot-Extended
+Allow: /
+
+# Commercial SEO Scrapers & Aggressive Crawlers (Protect Vercel ISR Quotas)
+User-agent: SEOForgeBot
+User-agent: SEOForgeBot/2.0
+User-agent: SEOForge
+User-agent: SemrushBot
+User-agent: SemrushBot-SA
+User-agent: AhrefsBot
+User-agent: Bytespider
+User-agent: MJ12bot
+User-agent: DotBot
+User-agent: PetalBot
+User-agent: CCBot
+User-agent: Diffbot
+User-agent: cohere-ai
+User-agent: Meta-ExternalAgent
+User-agent: FacebookBot
+Disallow: /
+
+Sitemap: https://dholeramap.com/sitemap.xml
+# Google Image Search. Points at the TP 1-6 scheme blueprints and the pillar-page
+# showcase imagery that is actually rendered in server HTML. The Leaflet map
+# tiles under /tiles/ are intentionally NOT submitted.
+Sitemap: https://dholeramap.com/image-sitemap.xml

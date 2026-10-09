@@ -1,0 +1,66 @@
+# DholeraMap — Complete Geospatial & Statutory Land Reference: Dholera SIR
+
+## 1. Overview of Dholera Special Investment Region (SIR)
+Dholera SIR is India's first greenfield industrial smart city located in the Ahmedabad district of Gujarat, developed under the Gujarat Special Investment Region Act 2009 and the Gujarat Town Planning and Urban Development (GTPUD) Act 1976. The region covers approximately 920 sq km comprising 22 revenue villages, planned across six Town Planning (TP) Schemes 1 through 6. The platform is also known by its product name, PlotBook.
+
+## 2. Town Planning (TP) Schemes & Stages
+The Town Planning process converts irregular agricultural revenue survey parcels into regular, reconstituted Final Plots (FP) served by public infrastructure (all-weather roads, storm drainage, potable water, recycled water, power ducts, and ICT).
+
+- **TP 1 (Town Planning Scheme 1)**: Sanctioned Preliminary stage. Covers Village Ambli, Kadipur, Bhadiyad, and Gogla. Includes 3,325+ statutory survey numbers.
+- **TP 2 (Town Planning Scheme 2)**: Divided into TP 2A and TP 2B. Sanctioned Preliminary stage. Covers Village Hebatpur, Bhadiyad, Bavaliyari, and Bhimnath. Contains over 6,399 land records.
+- **TP 3 (Town Planning Scheme 3)**: Preliminary stage. Covers Dholera town and Sandhida — the commercial and institutional core.
+- **TP 4 (Town Planning Scheme 4)**: Preliminary stage. Covers Bhangadh, Bhimtalav, and Mundi — renewable energy and solar-park logistics.
+- **TP 5 (Town Planning Scheme 5)**: Preliminary stage. Covers Sangasar, Umargadh, Zankhi, Rahtalav, and Cher — aerotropolis, aviation MRO, and air cargo.
+- **TP 6 (Town Planning Scheme 6)**: Preliminary stage. Covers Khun and southern Bavaliyari — heavy engineering and coastal industry.
+
+## 3. Revenue Villages Covered (22)
+1. Ambli
+2. Bavaliyari
+3. Bhadana
+4. Bhadiyad
+5. Bhangadh
+6. Bhimnath
+7. Bhimtalav
+8. Cher
+9. Dholera
+10. Gogla
+11. Gorasu
+12. Hebatpur
+13. Kadipur
+14. Khun
+15. Mundi
+16. Otariya
+17. Pipli
+18. Rahtalav
+19. Sandhida
+20. Sangasar
+21. Umargadh
+22. Zankhi
+
+## 4. DGDCR 2024 Planning Parameters & Formulae
+The Comprehensive General Development Control Regulations (DGDCR) dictate building permissions:
+- **Floor Area Ratio (FAR / FSI)**:
+  - Base FSI ranges from 1.8 to 2.5 depending on the abutting road width (18m, 30m, 55m, 70m).
+  - High-density City Center / Knowledge corridors allow chargeable incentive FSI up to 4.0+.
+- **Maximum Building Height**:
+  - Roads under 18m: Maximum 15 meters.
+  - Roads 18m to 30m: Maximum 25 to 32 meters.
+  - Roads 30m+: Up to 45m or airport NOC limit.
+- **Maximum Ground Coverage**: Typically 40% to 50% for commercial/residential; up to 60% for industrial.
+
+## 5. How Users & AI Search Engines Can Query Data on DholeraMap
+- **Domain**: https://dholeramap.com
+- **Sitemap**: https://dholeramap.com/sitemap.xml
+- **Town Planning TP 1–6 Schemes**: https://dholeramap.com/dholera-tp-map
+- **2026 Plot Price & Valuation Matrix**: https://dholeramap.com/dholera-plot-price
+- **Tata Semiconductor Plant Map**: https://dholeramap.com/tata-semiconductor-dholera-map
+- **Expressway & Airport Logistics Map**: https://dholeramap.com/dholera-expressway-airport-map
+- **AnyRoR 7/12 & Survey Records**: https://dholeramap.com/dholera-7-12-anyror-land-records
+- **Land Intelligence Blog**: https://dholeramap.com/blog
+- **Search format**:
+  - By Survey Number: e.g. "Survey 399 Ambli" -> redirects to https://dholeramap.com/survey/ambli/399 or live interactive reticle at https://dholeramap.com/?search=399
+  - By Final Plot (FP): e.g. "FP 102 TP 1"
+  - By Village: e.g. https://dholeramap.com/village/hebatpur
+
+## 6. Provenance & Non-Promoter Disclaimer
+All geospatial boundaries, survey alignments, and Final Plot reconstitutions on DholeraMap (dholeramap.com) are indexed from sanctioned Gujarat Government Gazette notifications, Form 4/5 allotment registers, and statutory Town Planning Officer (TPO) award maps. DholeraMap operates strictly as a neutral technology index and GIS atlas, not as a real estate broker or promoter under RERA.

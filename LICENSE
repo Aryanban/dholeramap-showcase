@@ -1,0 +1,42 @@
+DholeraMap Source-Available & Hackathon Evaluation License
+Version 1.0 (October 2026)
+Copyright (c) 2026 DholeraMap (dholeramap.com). All rights reserved.
+
+================================================================================
+TERMS AND CONDITIONS FOR EVALUATION AND ACADEMIC INSPECTION
+================================================================================
+
+1. GRANT OF EVALUATION LICENSE:
+Subject to the terms and conditions of this Agreement, DholeraMap hereby grants
+hackathon organizers, official competition judges, evaluators, and academic
+reviewers a non-exclusive, non-transferable, revocable license to:
+  a) View, inspect, and evaluate the source code contained in this repository
+     solely for the purpose of technical evaluation, competition judging, and
+     academic assessment.
+  b) Compile and execute the source code in a local development environment
+     for demonstration and verification purposes.
+
+2. PROPRIETARY RIGHTS & RESTRICTIONS:
+Except as expressly authorized in Section 1, ALL RIGHTS ARE RESERVED:
+  a) COMMERCIAL USE PROHIBITED: No person or entity may use this software, or
+     any portion thereof, for any commercial purpose, public service, or
+     revenue-generating enterprise.
+  b) REPRODUCTION & REDISTRIBUTION PROHIBITED: No person or entity may copy,
+     mirror, fork, distribute, publish, sublicense, or publicly transmit the
+     source code or compiled binaries without prior written consent.
+  c) REVERSE ENGINEERING & EXTRACTION: You may not reverse engineer, decompile,
+     or attempt to extract proprietary geospatial schemas, tile pyramids, or
+     spatial compression algorithms for use in competing platforms.
+  d) PROPRIETARY DATA ASSETS: All underlying geospatial cadastral surveys,
+     Town Planning blueprints, calibrated WGS84 coordinate models, and
+     regulatory datasets remain the exclusive trade secret and intellectual
+     property of DholeraMap.
+
+3. DISCLAIMER OF WARRANTY:
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE, AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES, OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT, OR OTHERWISE, ARISING FROM,
+OUT OF, OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
+THE SOFTWARE.

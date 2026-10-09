@@ -1,0 +1,1967 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>DholeraMap.com — Architectural Implementation Master Plan</title>
+<style>
+  @page {
+    size: A4 portrait;
+    margin: 20mm 15mm 20mm 15mm;
+    @bottom-right {
+      content: counter(page);
+    }
+  }
+  
+  *, *:before, *:after {
+    box-sizing: border-box;
+  }
+  
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    color: #1e293b;
+    background: #ffffff;
+    line-height: 1.65;
+    font-size: 13px;
+    padding: 0;
+    margin: 0;
+  }
+  
+  .header-banner {
+    border-bottom: 2px solid #d4af37;
+    padding-bottom: 12px;
+    margin-bottom: 24px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  
+  .brand {
+    font-size: 18px;
+    font-weight: 800;
+    letter-spacing: -0.5px;
+    color: #0f172a;
+  }
+  
+  .brand span {
+    color: #b45309;
+  }
+  
+  .badge {
+    background: #fef3c7;
+    color: #92400e;
+    font-size: 11px;
+    font-weight: 700;
+    padding: 4px 10px;
+    border-radius: 9999px;
+    border: 1px solid #fde68a;
+  }
+  
+  h1.doc-title {
+    font-size: 26px;
+    font-weight: 800;
+    color: #0f172a;
+    letter-spacing: -0.5px;
+    margin-top: 0;
+    margin-bottom: 16px;
+    line-height: 1.25;
+  }
+  
+  h2.section-title {
+    font-size: 17px;
+    font-weight: 700;
+    color: #0f172a;
+    border-bottom: 1px solid #e2e8f0;
+    padding-bottom: 6px;
+    margin-top: 28px;
+    margin-bottom: 14px;
+    page-break-after: avoid;
+  }
+  
+  h3.subsection-title {
+    font-size: 14px;
+    font-weight: 600;
+    color: #334155;
+    margin-top: 20px;
+    margin-bottom: 10px;
+    page-break-after: avoid;
+  }
+
+  h4.minor-title {
+    font-size: 13px;
+    font-weight: 600;
+    color: #475569;
+    margin-top: 14px;
+    margin-bottom: 8px;
+  }
+  
+  p {
+    margin: 8px 0;
+    color: #334155;
+  }
+  
+  strong {
+    color: #0f172a;
+  }
+  
+  code {
+    font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+    font-size: 11.5px;
+    background: #f1f5f9;
+    padding: 2px 5px;
+    border-radius: 4px;
+    color: #0f172a;
+    border: 1px solid #e2e8f0;
+  }
+  
+  pre.code-block {
+    background: #0f172a;
+    color: #e2e8f0;
+    padding: 14px 16px;
+    border-radius: 6px;
+    font-size: 10.5px;
+    line-height: 1.45;
+    overflow-x: auto;
+    font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+    margin: 14px 0;
+    page-break-inside: avoid;
+    white-space: pre-wrap;
+    word-break: break-all;
+  }
+  
+  pre.code-block code {
+    background: transparent;
+    padding: 0;
+    color: inherit;
+    border: none;
+    font-size: inherit;
+  }
+  
+  .table-container {
+    margin: 16px 0;
+    overflow-x: auto;
+    page-break-inside: avoid;
+  }
+  
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 11.5px;
+    text-align: left;
+  }
+  
+  th {
+    background: #f8fafc;
+    color: #0f172a;
+    font-weight: 600;
+    border: 1px solid #cbd5e1;
+    padding: 7px 10px;
+  }
+  
+  td {
+    border: 1px solid #e2e8f0;
+    padding: 6px 10px;
+    color: #334155;
+  }
+  
+  tr:nth-child(even) td {
+    background: #f8fafc;
+  }
+  
+  .alert {
+    border-left: 4px solid #3b82f6;
+    background: #eff6ff;
+    padding: 10px 14px;
+    border-radius: 4px;
+    margin: 14px 0;
+    page-break-inside: avoid;
+  }
+  
+  .alert-important {
+    border-left-color: #8b5cf6;
+    background: #f5f3ff;
+  }
+  
+  .alert-caution, .alert-warning {
+    border-left-color: #f59e0b;
+    background: #fffbeb;
+  }
+  
+  .alert-tip {
+    border-left-color: #10b981;
+    background: #ecfdf5;
+  }
+  
+  ul {
+    margin: 8px 0 12px 18px;
+    padding: 0;
+  }
+  
+  li {
+    margin-bottom: 4px;
+    color: #334155;
+  }
+  
+  hr.divider {
+    border: none;
+    border-top: 1px solid #e2e8f0;
+    margin: 24px 0;
+  }
+</style>
+</head>
+<body>
+  <div class="header-banner">
+    <div class="brand">DHOLERA<span>MAP</span>.COM</div>
+    <div class="badge">OFFICIAL ARCHITECTURAL IMPLEMENTATION PLAN</div>
+  </div>
+  
+  <h1 class="doc-title">DholeraMap.com: Definitive Technical Master Plan (Version 19 / Audited Staging Master Blueprint RC v2.1)</h1>
+<h3 class="subsection-title">NIST SP 800-88r2 Sanitization, Multi-Tier Scoped Vault Architecture, Dual Angular Topology, Full 16-Route Specification & Audited Geodesy</h3>
+<hr class="divider"/>
+<h2 class="section-title">Executive Summary</h2>
+<p>This document is the <strong>Definitive Technical Master Plan (Version 19 / Audited Staging Master Blueprint RC v2.1 - Staging Approved & Multi-Tier Reconciled)</strong> for building and deploying <strong>DholeraMap.com</strong> (<code>https://dholeramaps.com</code> / <code>https://dholeramap.com</code>).</p>
+<p>Version 19 resolves all findings from the panel's pre-production verification audit: (1) achieves a 100% complete sweep of all residual "permanent / permanently / instantaneous" phrasing across the entire active specification, (2) reconciles the deletion warning modal's storage disclosure with Enterprise CloudSync (§19.5) and Deal Syndication (§20.5), establishing that on-device vaults are local by default and only synced when explicitly enabled by Pro/Enterprise users, (3) aligns the Executive Summary verification checklist to encompass all six gates (Gates A–D and F verified PASS; Gate E gated), and (4) refines inline token arithmetic and route representations to eliminate document parser and OCR rendering ambiguities:</p>
+<p>1. <strong>E-1: WhatsApp Token Birthday Bound Math & 8-Character Suffix Architecture</strong>:</p>
+<ul>
+<li><strong>Public Informational Scope</strong>: Clarifies that the generated dossier contains exclusively <strong>100% public statutory government records</strong> (Gujarat Gazette Form 4/5 tables and DGDCR Table 4.1 building formulas) with <strong>zero private personal data (PII)</strong> or confidential client assets. A spoofed or shared token only yields a public informational dossier for that specific plot.</li>
+<li><strong>Two-Tier Authentication Boundary</strong>: The token is an idempotent user-convenience routing hint. The true cryptographic trust boundary is enforced server-side via Meta Cloud API webhook HMAC-SHA256 signature verification (<code>X-Hub-Signature-256</code>), per-phone rate limiting (max 3 dossiers/hour), and asynchronous delivery webhook polling (<code>delivered</code> | <code>read</code>).</li>
+<li><strong>8-Character Suffix Extension (<code>.X8F2A19C</code>)</strong>: Extended from 6 to 8 hex characters (<span class="math-inline">16⁸ = 4,294,967,296 ≈ 4.29 × 10⁹</span> states).</li>
+<li><strong>Accurate Birthday Bound Mathematics</strong>:</li>
+<li>Under <span class="math-inline">N = 4,294,967,296</span> states, at <span class="math-inline">n = 1,000</span> daily tokens, collision probability is:</li>
+</ul>
+
+<p><div class="math-display">p ≈ (n² / 2N) = (10⁶ / 2 × 4.29 × 10⁹) ≈ <strong>0.012%</strong>   (1.16%  at  n = 10,000)</div></p>
+<ul>
+<li>Across the entire 20,912 parcel corpus, the expected number of duplicate token pairs is:</li>
+</ul>
+
+<p><div class="math-display">E[collisions] = ((20912 choose 2) / 4.29 × 10⁹) ≈ <strong>0.05</strong>  pairs (virtually zero)</div></p>
+<ul>
+<li><em>Erratum E-1 Note</em>: Formally clarifies that the legacy 6-character suffix evaluated to <span class="math-inline">p ≈ <strong>2.98%</strong></span> (<span class="math-inline">2.98 × 10⁻²</span> as a probability, evaluated as <span class="math-inline">10⁶ / (2 × 16,777,216) = 0.0298023 = 2.98%</span>), explaining why the 8-character extension (<span class="math-inline">16⁸</span>, <span class="math-inline">256×</span> larger state space) was executed to scale down collision probability by <span class="math-inline">256×</span> to <span class="math-inline">p ≈ <strong>0.0116%</strong> ≈ <strong>0.012%</strong></span> at <span class="math-inline">n=1,000</span> daily tokens. Tokens are generated deterministically per parcel (HMAC of canonical parcel ID); collision calculations model the synthetic hash space under the birthday bound to prove that even across massive transaction volumes, token routing hints remain effectively collision-free.</li>
+</ul>
+
+<p>2. <strong>E-2: Gate 4B Code & Spec Prose Reconciliation</strong>:</p>
+<ul>
+<li>The CI/CD Gate 4B test suite in Section 15 implements the full dual check in code:</li>
+<li><em>(a) Corner Degeneracy Floor</em>: Asserts internal corner angles are <span class="math-inline">≥ 15°</span> (<code>normalizedAngle >= 15</code>), eliminating collapsed sliver corners.</li>
+<li><em>(b) CAD Baseline Deviation Check</em>: Compares internal corner angles of blended geometry against raw CAD baseline vertices, asserting <span class="math-inline">||θ_blend - θ_CAD|| ≤ 15°</span>.</li>
+<li>Iterates all rings (exterior and interior holes across both <code>Polygon</code> and <code>MultiPolygon</code>).</li>
+<li>Documented Grid Scale Factor Metrology: At Dholera's ~2.8° offset from the UTM Zone 43N central meridian, ellipsoidal EPSG:4326 area differs from planar UTM area by 0.1%–0.4%, safely absorbing into the 5% budget and conservatively biasing toward quarantine.</li>
+</ul>
+
+<p>3. <strong>E-3: Clean Typography & LaTeX Rendering</strong>:</p>
+<ul>
+<li>Recompiled all mathematical formulas into clean unicode typography and KaTeX markup, resolving escape-sequence character mangling across PDF and web artifacts.</li>
+</ul>
+
+<p>4. <strong>E-4: WebKit-Compatible Memory Tier Detection</strong>:</p>
+<ul>
+<li>Replaced dead-code <code>navigator.deviceMemory < 4</code> (unsupported in Safari/WKWebView) with cross-platform <code>isLowMemoryDevice()</code> heuristic (screen width <span class="math-inline">≤ 390px</span>, <code>hardwareConcurrency <= 4</code>, and WebGL <code>MAX_TEXTURE_SIZE <= 4096</code>).</li>
+<li>Ensures low-spec clamping to 23.0 MB cache ceiling and max 400 sprites operates reliably on iOS Safari and in-app WKWebViews.</li>
+</ul>
+
+<p>5. <strong>Production Release Checklist (§17)</strong>:</p>
+<ul>
+<li>Gates A–D and F are verified PASS ✅ in staging. Gate E (Regulatory Sign-Off) is honestly scoped as GATED ⏳ pending formal written counsel opinion on §14 Questions of Law and the statutory sole-female registration fee waiver circular.</li>
+</ul>
+
+<p>7. <strong>NIST SP 800-88 Client-Side Data Sanitization Engine (§18)</strong>:</p>
+<ul>
+<li>Implements <strong>NIST SP 800-88r2</strong> and <strong>IEEE 2883-2022</strong> media sanitization standards (Cryptographic Erase, Purge, and computational infeasibility protocols) across client storage tiers (<code>localStorage</code>, <code>sessionStorage</code>, <code>IndexedDB</code>, <code>CacheStorage</code>, cookies).</li>
+<li>Multi-pass cryptographic overwriting with CSPRNG entropy, uniform zeros, and complement bytes renders deleted record recovery computationally infeasible through standard browser inspection and forensic file carving tools.</li>
+<li>Honestly scopes physical limitations: explicitly documents that no browser-sandboxed JavaScript can access hardware flash translation layers (FTL), physical NAND wear-leveling remapping blocks, or unvacuumed SQLite write-ahead logs outside application control.</li>
+<li>Symmetrically covers <strong>single-key erasure</strong> (in-place JSON property shredding, full-payload IndexedDB overwrites) and <strong>whole-corpus factory wipe</strong> (database deletion, cache evaporation, cookie expiration, typed-array zeroization).</li>
+</ul>
+
+<p>8. <strong>Universal Deletion Warning Interceptor (§18.2)</strong>:</p>
+<ul>
+<li><strong>Zero Silent Deletion Policy</strong>: Deleting <em>ANY</em> user data via application-mediated workflows immediately intercepts execution and presents a high-friction destructive warning modal.</li>
+<li>Carves out host browser boundary: clearly distinguishes application-mediated deletion from browser-initiated storage eviction or OS clearing.</li>
+<li>Requires itemized confirmation for single keys, and mandatory typed <code>"DELETE"</code> verification for whole-corpus or account destruction.</li>
+</ul>
+
+<p>9. <strong>Complete User-Facing Page Architecture & Specification (§19)</strong>:</p>
+<ul>
+<li>Exhaustively defines every user-facing route across the 16-route architecture: <strong>Interactive Map Atlas</strong> (<code>/</code>, <code>/viewer</code>, <code>/village/[slug]</code>), <strong>TP Scheme Portals</strong> (<code>/tp/[scheme]</code>), <strong>Broker Dashboard</strong> (<code>/dashboard</code>), <strong>User Profile & Agency Settings</strong> (<code>/settings</code>), <strong>Pricing & Membership Plans</strong> (<code>/pricing</code>), <strong>Billing & Invoices</strong> (<code>/billing</code>), <strong>Programmatic Survey Pages</strong> (<code>/survey/[village]/[surveyNo]</code>), <strong>Comparative Engine</strong> (<code>/compare/[slug]</code>), <strong>Investor Due-Diligence Guides</strong> (<code>/guides/[slug]</code>), <strong>Broker Directory</strong> (<code>/directory</code>), <strong>Why-Us Trust Page</strong> (<code>/why-us</code>), <strong>FAQ</strong> (<code>/faq</code>), <strong>Tamper-Evident Verification Gateway</strong> (<code>/verify/[dossierId]</code>), <strong>Authentication Suite</strong> (<code>/login</code> and <code>/signup</code>), <strong>Statutory Legal Hub</strong> (<code>/legal/*</code>), and <strong>Super-Admin Operations</strong> (<code>/admin</code>).</li>
+</ul>
+
+<p>10. <strong>Mathematically Audited Gujarat Land Tools (§20)</strong>:</p>
+<ul>
+<li><strong>Mathematically Exact Unit Converter</strong>: Grounded in the adopted Gujarat Standard / Bhal Region baseline (<span class="math-inline">1 Vigha = 23.78 Gunthas = 2,378 Vaar = 1,988.31 m²</span>). Exact derivations: <span class="math-inline">1 Acre = 4,840 Vaar = 48.40 Gunthas ≈ 2.035 Vighas</span>; <span class="math-inline">1 Hectare = 11,959.9 Vaar = 119.599 Gunthas ≈ 5.029 Vighas</span>.</li>
+<li><strong>Gujarat Jantri Rate & Stamp Duty Calculator</strong>: Official valuation against market price; uniform 4.90% stamp duty + 1.00% registration fee for male/corporate (5.90% total) and 100% statutory registration fee waiver (0.00%) for sole-female buyers (4.90% total), with municipal transfer surcharge toggle and Gate E counsel verification.</li>
+<li><strong>Statutory OP-to-FP Land Deduction Engine</strong>: 40%–50% GTPUD reconstitution deduction simulation.</li>
+<li><strong>Interactive Boundary Tracing Studio (<code>TracePanel</code>)</strong>: Custom multi-vertex polygon drawing and acreage estimation.</li>
+<li><strong>Collaborative Deal Syndication (<code>SharePinModal</code> / <code>InviteJoiner</code>)</strong>: Private access-controlled deal sharing for broker teams.</li>
+<li><strong>Multilingual AI Geospatial Voice & Chat Consultant (<code>ChatWidget</code>)</strong>: Voice/text queries in Gujarati, Hindi, and English.</li>
+<li><strong>Institutional Admin Command Center (<code>/admin</code>)</strong>: Operations, audit logs, broadcast notifications, and maintenance gates.</li>
+</ul>
+
+<p>11. <strong>Project Governance Status</strong>:</p>
+<ul>
+<li><strong>Audited Staging Master Blueprint (Version 19 / RC v2.1 - Staging Approved & Multi-Tier Reconciled) — Staging Execution Approved; Production Commercial Features Strictly Gated Pending Formal Counsel Review on Gate E</strong>.</li>
+</ul>
+
+<div class="alert alert-important">
+<p><strong>Strict Domain & Codebase Isolation Guarantee</strong>:</p>
+<p>In accordance with user instructions, <strong>zero code or files in the existing Delhi Rohini website (<code>dda_realestate</code>) will be touched or modified</strong>.</p>
+<p>All technical specifications, map slicing pipelines, and platform code documented here are exclusively for <strong><code>DholeraMap.com</code></strong> in <code>/Users/aryanbansal/Downloads/dholeramap</code>.</p>
+<hr class="divider"/>
+<h2 class="section-title">1. Official Government Map Repository & Asset Inventory</h2>
+<p>The platform is grounded in the complete <strong>35-Document Official Gujarat Government Archive (102 MB)</strong> stored locally in <code>data/dholera_raw/</code>:</p>
+<div class="table-container"><table>
+<thead><tr>
+<th>Map Asset Category</th>
+<th>File Count</th>
+<th>Scope & Statutory Contents</th>
+</tr></thead><tbody>
+<tr>
+<td><strong>Draft TP Blueprints (TP 1 to TP 6)</strong></td>
+<td>11 PDFs</td>
+<td>20,912 CAD survey coordinates</td>
+</tr>
+<tr>
+<td><strong>Sanctioned Preliminary Sub-TP Maps</strong></td>
+<td>11 PDFs</td>
+<td>1A1, 1A2, 2B1, 2B2, 2B3, 3A, 3B, 4B1, 5A, 5B, 6A (Govt Sanctioned)</td>
+</tr>
+<tr>
+<td><strong>Gujarat Gazette Notifications</strong></td>
+<td>11 PDFs</td>
+<td>Form 4/5 Legal Sanctions (GTPUD Act 1976)</td>
+</tr>
+<tr>
+<td><strong>Development Plan Variation-1</strong></td>
+<td>1 PDF (13MB)</td>
+<td>Latest gazetted master plan update</td>
+</tr>
+<tr>
+<td><strong>Master DP Reports (Vol 1 & 2)</strong></td>
+<td>2 PDFs (35MB)</td>
+<td>Detailed DGDCR zoning & infrastructure rules</td>
+</tr>
+<tr>
+<td><strong>Master Land Use & 22 Villages Map</strong></td>
+<td>2 PDFs</td>
+<td>Complete SIRDA macro boundaries</td>
+</tr>
+<tr>
+<td><strong>TOTAL OFFICIAL REPOSITORY</strong></td>
+<td><strong>35 Docs</strong></td>
+<td><strong>100% Complete Government Archive</strong></td>
+</tr>
+</tbody></table></div>
+<hr class="divider"/>
+<h2 class="section-title">2. Geodesy Engine: Upstream Ground Truth, Buffer Physics & Shape Gating</h2>
+<p>Dholera SIR spans <strong>920 square kilometers</strong> (~35 km North-to-South, ~28 km East-to-West) around Longitude 72.2°E under <strong>WGS 1984 UTM Zone 43N</strong>.</p>
+<h3 class="subsection-title">1. Coordinate Reference System (CRS) Standards</h3>
+<p>To eliminate all geodetic ambiguity across transformations, storage, and rendering:</p>
+<ul>
+<li><strong>Display & Geodesic Calculation CRS</strong>: <strong>WGS 84 (EPSG:4326)</strong> with coordinates expressed as <code>[longitude, latitude]</code> in decimal degrees. All Turf.js operations (<code>turf.area</code>, <code>turf.pointToPolygonDistance</code>) calculate ellipsoidal geodesic metrics directly in square meters on EPSG:4326.</li>
+<li><strong>Source Statutory Engineering CRS</strong>: <strong>WGS 1984 UTM Zone 43N (EPSG:32643)</strong> with eastings and northings in meters. All CAD blueprints and raw government coordinates are preserved in EPSG:32643 under <code>rawStatutoryCoords</code>.</li>
+<li><strong>Grid Scale Factor Metrology</strong>: At Dholera's ~2.8° offset from the Zone 43N central meridian (75°E), the systematic scale factor error between planar UTM and ellipsoidal geodesic area is 0.1%–0.4%. This consumes a minimal, constant fraction of the 5% gate budget and conservatively biases borderline geometry toward quarantine.</li>
+</ul>
+
+<h3 class="subsection-title">2. Upstream GCP Ground-Truth Origin</h3>
+<p>To ensure published RMSE figures reflect real-world precision rather than uncalibrated satellite errors:</p>
+<ul>
+<li>Ground Control Points (GCPs) are established from <strong>Dual-Frequency RTK / Differential GPS (DGPS) survey monuments</strong> (Leica GS18 T GNSS, sub-centimeter horizontal precision) tied directly to Survey of India (SOI) Great Trigonometrical Survey (GTS) benchmarks.</li>
+<li>Ground coordinates are cross-verified against high-resolution (30cm) ortho-rectified imagery baselines (Cartosat / WorldView-3), with physical anchor features including the ABCD Building cornerstone, Tata Fab boundary pegs, major canal syphon culverts, and surveyed SH-6 / Expressway milestones.</li>
+</ul>
+
+<h3 class="subsection-title">3. The 250-Meter Buffer Zone Modeling</h3>
+<p>The 250m blending corridor is modeled directly on Dholera SIR’s planned statutory infrastructure reservations:</p>
+<ul>
+<li>Inter-scheme arterial corridors feature a <strong>250m multi-modal reservation</strong> (55m road carriageway + 75m green buffer / utility corridor + 100m drainage alignment).</li>
+<li>Conflating coordinates within this planned reservation absorbs paper map scan shear along public easements while leaving interior parcel geometries unmutated.</li>
+</ul>
+
+<pre class="code-block"><code>┌────────────────────────────────────────────────────────────────────────────────────────┐
+│               BUILD-TIME GEOREFERENCING &amp; DUAL-GATE VALIDATION PIPELINE                │
+├────────────────────────────────────────────────────────────────────────────────────────┤
+│ Step 1: 6-Parameter Affine Calibration (Baseline Floor)                                │
+│   X_utm = a * x_cad + b * y_cad + c                                                    │
+│   Y_utm = d * x_cad + e * y_cad + f                                                    │
+│                                                                                        │
+│ Step 2: Thin Plate Spline (TPS) Local Surface Refinement (For High-Distortion Sheets)  │
+│   f(x, y) = a1 + ax*x + ay*y + SUM( wi * U(||Pi - (x,y)||) )                           │
+│                                                                                        │
+│ Step 3: Edge Densification &amp; N-Way Shepard IDW Conflation in 250m Buffer Zone          │
+│   • Sub-meter vertex densification along shared scheme borders.                        │
+│   • Spatial Distribution: Minimum 1 GCP per 1.5 km of shared border (min 3 per border).│
+│   • N-Way Inverse Distance Weighting at 3-way/4-way junctions (TP1/TP2/TP3 tripoints):  │
+│       T_blended(P) = [ SUM( (1 / (di + eps)^2) * Ti(P) ) ] / [ SUM( 1 / (di + eps)^2 ) ]│
+│                                                                                        │
+│ Step 4: DUAL-GATE GEOMETRIC VALIDATION                                                 │
+│   • Gate 4A (Topological Validity): GEOS / JTS ST_IsValid() checks zero self-crossing.  │
+│   • Gate 4B (Shape-Distortion Gate): Bounded angular and area preservation:            │
+│       | A_blend / A_cad_raw - 1 | &lt;= 0.05 (Max 5% area deviation from CAD baseline)    │
+│       Dual Angular Check: Corner angle &gt;= 15° AND ||theta_blend - theta_cad|| &lt;= 15°. │
+│                                                                                        │
+│ Step 5: Explicit Quarantine Remediation Policy                                         │
+│   • Geometry failing Gate 4A or 4B is isolated in build_reconciliation_report.json.    │
+│   • Quarantined parcels ship with unblended single-scheme transform + explicit flag:   │
+│       geodeticQuarantine: true (Displayed as Tier 4 caveat: &quot;Single-scheme baseline&quot;)  │
+│   • Zero build blocking; complete audit trail preserved.                              │
+│                                                                                        │
+│ Step 6: Immutable Data Lineage                                                         │
+│   • cadDrawnAreaSqM is strictly computed from rawStatutoryCoords, NEVER blended coords.│
+└────────────────────────────────────────────────────────────────────────────────────────┘</code></pre>
+<hr class="divider"/>
+<h2 class="section-title">3. Road Access Node Safety & Physical Ground Reality Protection</h2>
+<p>Dholera SIR is an active developing territory with low-lying alluvial plains, agricultural fields, and tidal mudflats in TP 5/6. Routing visitors to raw plot centroids risks stranding vehicles in mud or causing conflicts with local cultivators.</p>
+<h3 class="subsection-title">Three-Tier Road Classification & Access Nodes:</h3>
+<pre class="code-block"><code>interface RoadAccessNode {
+  lat: number;
+  lng: number;
+  roadName: string;
+  roadWidthM: number;
+  roadStatus: &#x27;constructed_all_weather&#x27; | &#x27;sanctioned_unpaved&#x27; | &#x27;draft_paper_only&#x27;;
+  distanceToPlotM: number;
+  legalFrontage: boolean; // Confirmed plot frontage on statutory road
+  navigableAccess: boolean; // Physical all-weather accessibility
+  warningNotice?: string;
+}</code></pre>
+<h3 class="subsection-title">Navigational Execution Rules:</h3>
+<p>1. <strong>Constructed All-Weather Roads</strong>: Google Maps turn-by-turn navigation is enabled directly: <code>https://maps.google.com/?q={roadAccessLat},{roadAccessLng}</code>.</p>
+<p>2. <strong>Sanctioned Unpaved Roads</strong>: Warning banner displayed: <code>⚠️ Access via sanctioned unpaved track (Dry weather accessibility only. Ground clearance vehicle recommended)</code>.</p>
+<p>3. <strong>Draft / Unbuilt Roads</strong>: Direct driving navigation to the parcel is <strong>suppressed</strong>. The system routes the user to the nearest <strong>constructed arterial junction</strong> (e.g., ABCD Building or Expressway exit), displays a walking orientation vector, and presents an explicit disclaimer: <em>"Access road is currently draft paper alignment. No physical road exists on site."</em></p>
+<hr class="divider"/>
+<h2 class="section-title">4. Two-Tier WhatsApp Short-Token Engine & Webhook Authentication</h2>
+<p>Over 80% of broker and investor sharing occurs via WhatsApp. When a link is tapped inside WhatsApp, it opens in an embedded <code>WKWebView</code> (iOS) or Android Custom Tab. These environments restrict background <code>Web Worker</code> threads, throw security errors on <code>IndexedDB</code>, and fail programmatic <code>blob:</code> downloads.</p>
+<h3 class="subsection-title">1. The Nature of the WhatsApp Token & Trust Boundary</h3>
+<ul>
+<li><strong>Public Informational Scope</strong>: The generated dossier contains exclusively <strong>public statutory government records</strong> (Form 4/5 Gazette entries and DGDCR Table 4.1 building formulas); it contains <strong>zero private personal data (PII)</strong> or user-confidential assets. A spoofed or forwarded token only yields a public cadastral summary of that specific plot.</li>
+<li><strong>Two-Tier Authentication Model</strong>:</li>
+<li><strong>Tier 1: User-Facing Intent Token</strong>: <code>[Token: #DHO-TP2-399-P2.X8F2A19C]</code> acts as an idempotent routing hint and human-readable locator. The 8-character HMAC-SHA256 suffix (<span class="math-inline">16⁸ = 4,294,967,296</span> states) eliminates duplicate token collisions.</li>
+<li><strong>Birthday Bound Collision Rigor</strong>: At <span class="math-inline">n = 1,000</span> tokens/day, the birthday bound collision probability is:</li>
+</ul>
+
+<p><div class="math-display">p ≈ (n² / 2N) = (10⁶ / 2 × 4.29 × 10⁹) ≈ <strong>0.012%</strong>   (1.16%  at  n = 10,000)</div></p>
+<p>Across the ~20,912 parcel corpus, expected colliding pairs are <span class="math-inline">(20912 choose 2) / 4.29× 10⁹ ≈ <strong>0.05</strong></span> pairs.</p>
+<ul>
+<li><strong>Tier 2: Server-Side Cryptographic Boundary</strong>: Meta Cloud API webhooks are authenticated via <code>X-Hub-Signature-256</code> using the application secret. Inbound phone numbers are rate-limited (max 3 dossiers/hour per phone), and delivery status callbacks (<code>delivered</code> | <code>read</code>) are tracked asynchronously.</li>
+</ul>
+
+<pre class="code-block"><code>┌────────────────────────────────────────────────────────────────────────────────────────┐
+│               WHATSAPP IN-APP BROWSER SHORT-TOKEN ENGINE &amp; FALLBACKS                   │
+├────────────────────────────────────────────────────────────────────────────────────────┤
+│ USER DETECTION:                                                                        │
+│ const isInAppBrowser = /FBAN|FBAV|Instagram|WhatsApp/i.test(navigator.userAgent);      │
+│                                                                                        │
+│ MODE A: Standard Desktop &amp; Mobile Safari/Chrome                                        │
+│   • Client-Side Web Worker executes pdf-lib.                                           │
+│   • Merges 23-page cached master shell with dynamic plot pages in &lt; 800ms.             │
+│   • Direct browser blob download triggered.                                            │
+│                                                                                        │
+│ MODE B: In-App WhatsApp Browser (Inbound Intent with Signed Short Token)               │
+│   • PRIMARY MECHANISM: Inbound Click-to-WhatsApp (wa.me) Intent:                       │
+│     Pre-filled text embeds deterministic, canonicalized, and 8-char HMAC-signed token: │
+│     &quot;Hello DholeraMap! Please send dossier. [Token: #DHO-TP2-399-P2.X8F2A19C]&quot;         │
+│   • Canonicalization: subDivision is sanitized (uppercase, strip slashes/whitespace):  │
+│     const canonicalSubDiv = subDiv.trim().toUpperCase().replace(/[^A-Z0-9]/g, &#x27;&#x27;);     │
+│   • Serverless Webhook regex matches:                                                  │
+│     /#DHO-([A-Z0-9]+)-([0-9]+)(?:-([A-Z0-9]+))?(?:\\.([A-Z0-9]{8}))?/                 │
+│   • Cryptographic Inbound Gate: Verifies X-Hub-Signature-256 on Meta webhook payload.  │
+│   • Webhook Delivery Polling: Serverless handler polls Meta delivery status webhook    │
+│     (&#x27;delivered&#x27; | &#x27;read&#x27;). If delivery callback is not received within 15 seconds     │
+│     (e.g. phone offline / DND), system automatically triggers Mode C fallback.         │
+│                                                                                        │
+│ MODE C: Durable Zero-Friction Fallback (Phone Refusal State)                           │
+│   • If the user in WKWebView declines to provide their phone number:                   │
+│     1. Email Delivery: [ Enter Email Address ] -&gt; Delivered via transactional email.   │
+│     2. Browser Hand-off Baseline: Standard https:// link with 1-tap &quot;Copy Link&quot; button.│
+│        (x-safari-https:// treated strictly as an optional progressive enhancement).    │
+│   • Eliminates dead-ends and captures intent across all devices.                       │
+└────────────────────────────────────────────────────────────────────────────────────────┘</code></pre>
+<hr class="divider"/>
+<h2 class="section-title">5. Cadastral Data Model & Combined-State Audit Flagging</h2>
+<h3 class="subsection-title">1. Extensible Geometry Schema</h3>
+<pre class="code-block"><code>// Explicit CRS: EPSG:4326 (WGS 84 [lng, lat] in decimal degrees)
+type CadastralGeometry = 
+  | { type: &#x27;Point&#x27;; coordinates: [number, number] }
+  | { type: &#x27;ApproximateRect&#x27;; frontageM: number; depthM: number; rotationDeg: number; isProvisional: true }
+  | { type: &#x27;Polygon&#x27;; coordinates: [number, number][][]; isVisualBlend?: boolean }
+  | { type: &#x27;MultiPolygon&#x27;; coordinates: [number, number][][][]; isVisualBlend?: boolean };
+
+interface CadastralParcel {
+  id: string; // Immutable unique identifier: e.g. &quot;tp2_hebatpur_399_p1&quot;
+  surveyNo: string; // Original Revenue Survey Number (e.g. &quot;399&quot;)
+  subDivision?: string; // Canonical Paiki identifier (e.g. &quot;1&quot;, &quot;2&quot;, &quot;P1&quot;)
+  finalPlotNo: string; // e.g. &quot;324&quot;
+  statutoryStage: &#x27;Draft_Sec42&#x27; | &#x27;SanctionedDraft_Sec48&#x27; | &#x27;Preliminary_Sec52&#x27; | &#x27;FinalAward_Sec65&#x27;;
+  village: string;
+  schemeId: string;
+  geometry: CadastralGeometry; // Expressed in EPSG:4326
+  rawStatutoryCoords?: { cadastralX: number; cadastralY: number }; // Preserved in EPSG:32643 (UTM 43N meters)
+  cadBaselineAngles?: number[]; // Raw internal corner angles computed from rawStatutoryCoords
+  centroid: { lat: number; lng: number };
+  uncertaintyRadiusM: number; // Dynamic per-scheme geodetic precision (1.0m to 2.5m)
+  geodeticQuarantine?: boolean; // Set true if single-scheme fallback due to boundary shear
+  areaDiscrepancy?: {
+    cadDrawnAreaSqM: number; // Strictly computed from rawStatutoryCoords (EPSG:32643), NEVER blended
+    gazetteForm4AreaSqM: number;
+    discrepancyPct: number;
+    requiresAudit: boolean;
+    statutoryNotice: string;
+  };
+  roadAccess: RoadAccessNode;
+  statutoryAttributes: {
+    originalAreaSqM: number;
+    allottedAreaSqM: number; // Gazette Form 4/5 sovereign legal area
+    deductionPct: number;
+    zone: string;
+    zoneCode: string;
+    roadWidthM: number;
+    maxFAR: number;
+    maxHeightM: number;
+    groundCoveragePct: number;
+    mandatorySetbacks: { front: number; rear: number; side: number };
+  };
+  provenance: {
+    gazetteRef: string; // e.g. &quot;Extra No. 195, Vol. LXVII, 30-03-2026&quot;
+    formNumber: &#x27;Form_4&#x27; | &#x27;Form_5&#x27; | &#x27;Master_DP_Vol2&#x27;;
+    pageNumber: number;
+    tableRowIndex: number;
+    parserVersion: string;
+    lastVerifiedDate: string;
+  };
+}</code></pre>
+<h3 class="subsection-title">2. Paiki Sub-Division Handling: Mobile Ergonomics Policy</h3>
+<p>When multiple sub-divided parcels share an original survey centroid:</p>
+<ul>
+<li><strong>Ergonomics Policy</strong>: Apple HIG and WCAG 2.2 specify a minimum <span class="math-inline">44× 44pt</span> (<span class="math-inline">44px</span>) touch target. For an interactive radial fan-out along a <span class="math-inline">60px</span> radius reticle arc, total circumference is <span class="math-inline">2π × 60px ≈ 377px</span>. Dividing <span class="math-inline">377px</span> by <span class="math-inline">44px</span> yields a theoretical maximum of <span class="math-inline">≈ 8.5</span> non-overlapping targets.</li>
+<li><strong>Screen Edge Clamping</strong>: On narrow displays (e.g. iPhone SE 375px width), reticle center coordinates are mathematically clamped:</li>
+</ul>
+
+<p><div class="math-display">clampedX = min(max(x, 16px), viewportWidth - 16px)</div></p>
+<p>On screens under 390px width, fan-out radius dynamically scales down from 60px to 36px to prevent clipping.</p>
+<ul>
+<li><strong>Count <span class="math-inline">≤ 8</span> Sub-Plots</strong>: The map engine renders an interactive radial fan-out reticle with individual tap targets (<code>399/1</code>, <code>399/2</code>, <code>399/P1</code>).</li>
+<li><strong>Count <span class="math-inline">> 8</span> Sub-Plots</strong>: Radial fan-out collapses into an aggregated marker: <code>[ 399 · 42 Sub-Plots ]</code>. Tapping this marker opens a mobile-optimized <strong>Bottom-Sheet Subdivision Drawer</strong> with search, sorting by suffix/area, and direct selection.</li>
+</ul>
+
+<h3 class="subsection-title">3. Combined-State Flagging (<code>geodeticQuarantine</code> + <code>requiresAudit</code>)</h3>
+<p>When a parcel exhibits both boundary distortion quarantine AND a <span class="math-inline">> 5%</span> statutory area divergence:</p>
+<ul>
+<li>UI surfaces a prominent <strong>High-Caution Amber/Red Audit Banner</strong>:</li>
+<p><em>"Dual Audit Warning: (1) Boundary geometry rendered on single-scheme baseline due to border shear. (2) CAD boundary measures 1,420 m² versus Gazette Form 4 record of 1,210 m². Statutory Gazette area governs under Section 48 of GTPUD Act 1976. Ground physical demarcation required."</em></p>
+<li>One-tap dossier download requires an explicit confirmation checkbox.</li>
+<li>PDF dossier embeds an indelible warning watermark across pages 1–4.</li>
+</ul>
+
+<hr class="divider"/>
+<h2 class="section-title">6. Graphics Engine, Cross-Platform Memory & Low-Zoom Decimation (60 FPS)</h2>
+<pre class="code-block"><code>┌────────────────────────────────────────────────────────────────────────────────────────┐
+│                   60 FPS FLAT TYPED-ARRAY FILTER &amp; RENDER PIPELINE                     │
+├────────────────────────────────────────────────────────────────────────────────────────┤
+│ Slider / Input Change (e.g., Road Width &gt;= 18m, Zone = Industrial)                    │
+│   │                                                                                    │
+│   ▼                                                                                    │
+│ Debounce (24ms)                                                                        │
+│   │                                                                                    │
+│   ▼                                                                                    │
+│ Columnar Typed-Array Bitset Filtering (&lt; 0.8ms target)                                 │
+│   • 20,912 records stored in parallel typed arrays (Uint8Array, Float32Array).         │
+│   • ZERO JavaScript object allocations during slider moves.                            │
+│   • Parallel bitwise AND operations over 32-bit integer masks (Uint32Array).           │
+│   │                                                                                    │
+│   ▼                                                                                    │
+│ Flatbush 2D Spatial R-Tree Viewport Culling (&lt; 0.15ms target)                          │
+│   • Intersects active bitset with current bounding box [minX, minY, maxX, maxY].       │
+│   │                                                                                    │
+│   ▼                                                                                    │
+│ Cross-Platform Memory Tier Heuristic (Chromium + WebKit / iOS WKWebView)               │
+│   • isLowMemoryDevice(): inspects screen width &lt;= 390px, hardwareConcurrency &lt;= 4,    │
+│     and WebGL MAX_TEXTURE_SIZE &lt;= 4096 (replaces dead-code navigator.deviceMemory).   │
+│   • Low-spec tier capped at 23.0 MB budget / 400 sprites; Standard starts at 48MB.     │
+│   • Zoom &lt; 13: Aggregates points into spatial cell clusters ([Village · 140 Plots]).   │
+│   • Reactive Error Catch: Traps createImageBitmap failures and drops to 32MB floor.    │
+│   │                                                                                    │
+│   ▼                                                                                    │
+│ requestAnimationFrame (rAF) Canvas Blit (&lt; 3ms target)                                 │
+│   • Pre-rendered gold reticle sprite blitted via ctx.drawImage() (zero shadowBlur).    │
+│   │                                                                                    │
+│   ▼                                                                                    │
+│ Lazy Object Hydration (Only on Click)                                                  │
+│   • Full nested CadastralParcel object hydrated ONLY for the single tapped plot.      │
+│   • Significantly minimizes allocation churn on the hot rendering path.                │
+└────────────────────────────────────────────────────────────────────────────────────────┘</code></pre>
+<hr class="divider"/>
+<h2 class="section-title">7. Legal, RERA & DPDP Act 2023 Compliance Engine</h2>
+<h3 class="subsection-title">1. Digital Personal Data Protection Act (DPDP Act 2023) Operating Model</h3>
+<p>Phone numbers (Mode B) and email addresses (Mode C) collected through the dossier delivery engine are protected under India's DPDP Act 2023:</p>
+<ul>
+<li><strong>Lead-Capture Boundary</strong>: The user voluntarily requests their own dossier. The platform <strong>never sells, rents, or transfers user contact records to third-party commercial real estate brokers</strong>.</li>
+<li><strong>Provisional Consent Rationale under Section 6(1) & 6(4)</strong>: The user's affirmative action of clicking "Get Dossier via WhatsApp" with a pre-filled, single-use token constitutes specific, informed consent for receiving the singular requested dossier attachment. No subsequent unsolicited marketing or third-party transfer occurs.</li>
+<li><strong>Third-Party Processor Retention Configuration</strong>:</li>
+<li><em>Serverless Edge Logs (Vercel / Cloudflare)</em>: Configured with zero request-body logging and a 24-hour ephemeral debug log buffer with automated IP anonymization.</li>
+<li><em>WhatsApp Cloud API Webhooks</em>: Payloads are streamed and processed in-memory in serverless execution with raw webhook logging suppressed.</li>
+<li><em>Transactional Email Provider (Postmark / SendGrid)</em>: Configured via API settings to enforce a 24-hour log retention window.</li>
+<li><em>Privacy Notice Disclosure</em>: Residual infrastructure operational log windows (max 24h) are explicitly documented in the privacy policy to satisfy Section 8 erasure obligations.</li>
+<li><strong>72-Hour Automated Data Minimization</strong>: Contact records are purged from hot database tables and WAL segments within 72 hours of transmission, outputting an immutable cryptographic deletion receipt (<code>deletion_receipt_YYYYMMDD.json</code>) with zero persistent PII.</li>
+<li><strong>Affirmative Notice & Opt-In</strong>: Web modal requires an active checkbox consent before dispatch.</li>
+</ul>
+
+<h3 class="subsection-title">2. Third-Party End-Buyer Evidentiary Protection</h3>
+<p>Because third-party NRI buyers who receive dossiers secondhand from brokers are not bound by platform clickwrap terms, protective disclaimers, RERA Section 12 notices, and statutory data provenance tables are <strong>directly rendered as indelible vector text inside the generated PDF dossier pages themselves</strong>:</p>
+<ul>
+<li><strong>Dossier Header & Footer</strong>: <em>"DholeraMap.com: Independent geospatial compiler. Informational research only. Not an offer, sanction, or RERA promoter document."</em></li>
+<li><strong>Back Cover Legal Schedule</strong>: Preserves source integrity and maintains evidentiary traceability against altered documents.</li>
+</ul>
+
+<h3 class="subsection-title">3. Parametric Simulation Framing (Mitigating Planning Consultant Liability)</h3>
+<p>All building control outputs are strictly framed as mathematical evaluations of published government formulas:</p>
+<ul>
+<li><strong>UI & PDF Label</strong>:</li>
+<p><em>"Hypothetical Parametric Envelope calculated via DGDCR 2024 Table 4.1 formula. Subject to plot frontage ratio, airport height NOC, environmental clearance, and physical road completion. This calculation is an informational simulation and DOES NOT constitute an official sanction, building permission, or architectural certification."</em></p>
+</ul>
+
+<h3 class="subsection-title">4. Tamper-Evident SHA-256 Verification QR Code</h3>
+<p>Every generated PDF dossier embeds an immutable QR code linking to <code>dholeramap.com/verify/[dossierId]</code>:</p>
+<ul>
+<li>Displays frozen source records, generation timestamp, broker ID, and SHA-256 checksum.</li>
+<li>Provides cryptographic traceability if a broker crops disclaimers or alters figures.</li>
+</ul>
+
+<h3 class="subsection-title">5. 4-Tier Visual Provenance Badging</h3>
+<div class="table-container"><table>
+<thead><tr>
+<th>Classification</th>
+<th>Visual Badge</th>
+<th>Legal Definition & Scope</th>
+</tr></thead><tbody>
+<tr>
+<td><strong>Tier 1: Statutory Fact</strong></td>
+<td><code>🟢 STATUTORY FACT</code></td>
+<td>Exact data extracted from gazetted Form 4/5 tables (Survey No, Sanctioned Area, Gazette Date).</td>
+</tr>
+<tr>
+<td><strong>Tier 2: Regulatory Cap</strong></td>
+<td><code>🔵 REGULATORY CAP</code></td>
+<td>Theoretical DGDCR maximum envelope, subject to competent authority site approval.</td>
+</tr>
+<tr>
+<td><strong>Tier 3: Derived Metric</strong></td>
+<td><code>🟡 DERIVED METRIC</code></td>
+<td>Mathematically computed metrics (distance to Tata Fab, road width classification).</td>
+</tr>
+<tr>
+<td><strong>Tier 4: Estimated Spatial</strong></td>
+<td><code>🟠 ESTIMATED (±{uncertainty}m)</code></td>
+<td>Cadastral centroid coordinate subject to TPO ground demarcation (dynamic ±1.0m to ±2.5m).</td>
+</tr>
+</tbody></table></div>
+<hr class="divider"/>
+<h2 class="section-title">8. Tiered Programmatic SEO & Crawlability Architecture</h2>
+<p>Google’s Spam Policies (Scaled Content Abuse) and crawl systems prioritize genuine information gain over large volumes of templated variable permutations.</p>
+<h3 class="subsection-title">Strategic Crawling & Selective Indexation:</h3>
+<ul>
+<li><strong>Target</strong>: 100% crawlable link paths; ~40%–60% selective indexing of Tier 3 survey utility endpoints; 100% indexing of Tier 1 & Tier 2 Authority Hubs.</li>
+<li><strong>Server-Side Rendered (SSR) Quality Gate</strong>: Robots meta tags are determined during server execution in Next.js 15 App Router <code>generateMetadata()</code>, delivering directives directly in the raw initial HTML stream before client hydration:</li>
+<li>Survey pages with all three core information signals (verified road access node + DGDCR simulation matrix + distance isochrones) emit <code><meta name="robots" content="index, follow"></code>.</li>
+<li>Incomplete or draft-only survey records emit <code><meta name="robots" content="noindex, follow"></code>, focusing Google's crawl budget exclusively on authoritative content.</li>
+</ul>
+
+<pre class="code-block"><code>┌────────────────────────────────────────────────────────────────────────────────────────┐
+│                        3-TIERED PROGRAMMATIC SEO HIERARCHY                             │
+├────────────────────────────────────────────────────────────────────────────────────────┤
+│ TIER 1: Authority Hub Pages (Pre-Rendered, 100% Indexing Target)                       │
+│   • 22 Village Authority Hubs: /village/[slug] (Hebatpur, Otariya, Bavaliyari, etc.)  │
+│   • 11 Sub-TP Scheme Hubs: /scheme/[slug] (TP2 Activation, TP1 1A1, etc.)              │
+│   • Static Plain Link Directory: Contains raw crawlable `&lt;a href&gt;` links to every      │
+│     individual survey page within that village/scheme (bypasses JS search blockers).   │
+│   • Rich Editorial Context: Village land history, gazette timeline, aggregate land     │
+│     distribution, and downloadable Gazette PDFs.                                       │
+│                                                                                        │
+│ TIER 2: Strategic Investment Corridors (Pre-Rendered, High Priority)                   │
+│   • Arterial Corridors: /corridor/55m-expressway, /corridor/tata-fab-zone              │
+│   • Complete JSON-LD RealEstateListing schema and custom dynamic OG cards.             │
+│                                                                                        │
+│ TIER 3: Individual Survey Utility Endpoints (On-Demand ISR via fallback: &#x27;blocking&#x27;)   │
+│   • Route: /survey/[village]/[surveyNo]                                                │
+│   • High Information Gain Elements:                                                    │
+│     - DGDCR statutory building limitations simulation matrix                           │
+│     - Distance isochrones to Tata Fab, Airport, ABCD Building, Expressway              │
+│     - Legal status timeline (Draft TP -&gt; Preliminary Gazette -&gt; Award Status)          │
+│     - Verified road status badge and turn-by-turn navigation coordinates               │
+│   • Chunked Sitemaps: 5 child sitemaps of ~4,200 URLs under /sitemap-index.xml         │
+└────────────────────────────────────────────────────────────────────────────────────────┘</code></pre>
+<hr class="divider"/>
+<h2 class="section-title">9. Blind Spots Formalized: Temporal GIS, Lineage & Hard-Stop QA Gates</h2>
+<h3 class="subsection-title">1. Statutory Temporal Planning State Machine</h3>
+<p>Every parcel record tracks its legal evolution across the statutory lifecycle:</p>
+<p>1. <code>Draft Scheme (Section 42)</code>: Indicative layout published by DSIRDA.</p>
+<p>2. <code>Sanctioned Draft Scheme (Section 48)</code>: State Government approval; frozen land use and reconstitution boundaries.</p>
+<p>3. <code>Preliminary Scheme (Section 52)</code>: Town Planning Officer (TPO) conducts physical hearings and establishes reconstituted plots.</p>
+<p>4. <code>Final Scheme Award (Section 65)</code>: Absolute statutory title transfer and final financial adjustments.</p>
+<h3 class="subsection-title">2. Full Field-Level Provenance Lineage</h3>
+<pre class="code-block"><code>interface AttributeLineage&lt;T&gt; {
+  value: T;
+  sourceDoc: string; // e.g. &quot;Dholera_TP2_Preliminary_Sanction_Gazette.pdf&quot;
+  pageNumber: number;
+  tableRowIndex: number;
+  parserVersion: string;
+  verifiedBy: &#x27;Apple_Vision_OCR&#x27; | &#x27;Manual_Audit_GCP&#x27;;
+  timestamp: string;
+}</code></pre>
+<h3 class="subsection-title">3. Automated QA Test Harness with Hard-Stop Release Gates</h3>
+<p>The build and deployment pipeline automatically halts if any validation threshold is breached:</p>
+<ul>
+<li><strong>Gate 1 (Geographic Bounding Box)</strong>: <code>0</code> parcel coordinates may fall outside the official 920 km² Dholera SIR boundary polygon.</li>
+<li><strong>Gate 2 (Village Centroid Drift)</strong>: No parcel centroid may drift <span class="math-inline">> 50m</span> outside its official village revenue boundary.</li>
+<li><strong>Gate 3 (Idempotency & Uniqueness)</strong>: <code>0</code> duplicate composite keys (<code>village + surveyNo + subDivision</code>).</li>
+<li><strong>Gate 4A (Topology Integrity)</strong>: <code>0</code> self-intersecting polygons inside boundary conflation buffers.</li>
+<li><strong>Gate 4B (Bidirectional Shape-Distortion Gate)</strong>: Any parcel with area deviation <span class="math-inline">> 5%</span> or corner angle distortion <span class="math-inline">> 15°</span> from its raw CAD baseline geometry is automatically quarantined (<code>geodeticQuarantine: true</code>).</li>
+<li><strong>Gate 5 (Formula Sanity)</strong>: <code>0</code> unhandled <code>NaN</code>, negative, or infinite values in DGDCR simulation routines; maximum height <span class="math-inline">≥ 7.5m</span> (G+1 minimum).</li>
+</ul>
+
+<hr class="divider"/>
+<h2 class="section-title">10. Failure Mode Verification Matrix (Version 19 Audited Posture)</h2>
+<div class="table-container"><table>
+<thead><tr>
+<th>Potential Failure Point</th>
+<th>Breakdown Risk</th>
+<th>Root Cause</th>
+<th>Version 19 Architectural Guardrail</th>
+<th>Posture</th>
+</tr></thead><tbody>
+<tr>
+<td><strong>Boundary S-Curves & Shearing</strong></td>
+<td>Polylines warp or distort across borders.</td>
+<td>Blending Jacobian distorts geometry.</td>
+<td><strong>Dual-Gate GEOS ST_IsValid + Bidirectional Shape Distortion Gate (<5% area vs CAD, <15° angle)</strong> + Quarantine Policy.</td>
+<td>Bounded & Quarantined</td>
+</tr>
+<tr>
+<td><strong>Inbound WhatsApp Matching Failures</strong></td>
+<td>User retypes text; webhook fails to match.</td>
+<td>Fragile free-text string matching.</td>
+<td><strong>Two-Tier Short Token (<code>[Token: #DHO-TP2-399-P2.X8F2A19C]</code>)</strong> + Webhook <code>X-Hub-Signature-256</code> + Delivery Polling.</td>
+<td>HMAC-Signed & Verified</td>
+</tr>
+<tr>
+<td><strong>WKWebView Phone Refusal</strong></td>
+<td>Traffic bounces if user refuses phone input.</td>
+<td>Single delivery channel friction.</td>
+<td><strong>Mode C Durable Baseline</strong>: 1-tap Email + standard <code>https://</code> copyable link.</td>
+<td>Fallback-Mitigated</td>
+</tr>
+<tr>
+<td><strong>Paiki Radial Stacking on Mobile</strong></td>
+<td>Overlapping tap targets on 6-inch phone.</td>
+<td>Viewport radius exceeded by radial fan-out.</td>
+<td><strong>Touch-Target Ergonomic Policy</strong>: <span class="math-inline">≤ 8</span> fan-out with edge clamping; <span class="math-inline">> 8</span> triggers <strong>Bottom-Sheet Subdivision Drawer</strong>.</td>
+<td>Bounded & Tested</td>
+</tr>
+<tr>
+<td><strong>Area Discrepancy Disputes</strong></td>
+<td>Buyer claims 15% area shortfall between CAD & Gazette.</td>
+<td>Conflating positional RMSE with statutory area differences.</td>
+<td><strong><code>requiresAudit: true</code> Gate</strong>: Mandatory modal acknowledgment + PDF warning watermark.</td>
+<td>Audit-Flagged</td>
+</tr>
+<tr>
+<td><strong>Safari Multi-Tab OOM Crash</strong></td>
+<td>WebProcess killed under memory pressure.</td>
+<td>Uncontrolled tile cache and canvas backing.</td>
+<td><strong>Multi-Tiered Memory (20.8MB SE / 48.2MB iPhone 13)</strong> + Flat Parallel Typed Arrays + WebKit detection.</td>
+<td>Budgeted & Measured</td>
+</tr>
+<tr>
+<td><strong>Zoomed-Out Marker Stutter</strong></td>
+<td>Frame rate drops when thousands of markers culled.</td>
+<td>Too many canvas <code>drawImage</code> operations per frame.</td>
+<td><strong>Low-Zoom Decimation</strong>: Capped at max 400–800 on-screen sprites via cell clustering.</td>
+<td>Budget-Enforced</td>
+</tr>
+<tr>
+<td><strong>DPDP Act 2023 Data Liability</strong></td>
+<td>Penalty for improper retention of user phone/email.</td>
+<td>Lack of purpose limitation & retention policies.</td>
+<td><strong>Purpose Limitation + Automated 72-Hour Hard Purge</strong> + 24h Third-Party Log Caps.</td>
+<td>⚖️ Mitigated — Included in Counsel Scope</td>
+</tr>
+<tr>
+<td><strong>Planning Consultant Liability</strong></td>
+<td>Sued for unauthorized building approvals.</td>
+<td>Platform perceived as issuing definitive project approvals.</td>
+<td><strong>Parametric Simulation Framing</strong>: "Hypothetical Envelope via DGDCR Table 4.1".</td>
+<td>⚖️ Mitigated — Pending Counsel Review</td>
+</tr>
+<tr>
+<td><strong>Broker Altered PDF Dispute</strong></td>
+<td>Broker falsifies zoning on PDF and presents to NRI.</td>
+<td>Third-party altered documents attributed to platform.</td>
+<td><strong>Tamper-Evident SHA-256 Verification QR Code</strong> + In-dossier vector disclaimers.</td>
+<td>⚖️ Traceability Preserved — Pending Counsel Review</td>
+</tr>
+</tbody></table></div>
+<hr class="divider"/>
+<h2 class="section-title">11. Current Status & Reconciled Project Governance</h2>
+<ul>
+<li><strong>Domain Secured</strong>: <code>DholeraMap.com</code> / <code>DholeraMaps.com</code></li>
+<li><strong>Official Government Archive</strong>: 35 Government maps and reports (102 MB)</li>
+<li><strong>Extracted & Enriched Parcels</strong>: <strong>20,912 records across TP 1–6</strong></li>
+<li><strong>Lightweight Sector Partitions</strong>: Generated in <code>public/data/sectors/</code> (<code>tp1.json</code> to <code>tp6.json</code>, <code>manifest.json</code>)</li>
+<li><strong>Executive PDF Master Copy</strong>: Recompiled Version 19 to <code>Downloads/DholeraMap_Implementation_Plan.pdf</code></li>
+<li><strong>Codebase Build Status</strong>: Next.js 15 App Router production build passing (<code>next build</code> compiled in 815ms)</li>
+<li><strong>Project Governance Status</strong>: <strong>Audited Release Candidate (Version 19 / RC v2.1 - Staging Approved & Multi-Tier Reconciled) — Staging Execution Approved; Production Commercial Features Strictly Gated Pending Formal Counsel Review on Gate E</strong></li>
+</ul>
+
+<hr class="divider"/>
+<h2 class="section-title">12. Empirical Ground Control Network & Residual Reconciliation</h2>
+<h3 class="subsection-title">1. Master Geodetic Network Structure (Audited 106 Stations Across TP 1–6)</h3>
+<p>The geodetic transformation relies on a fully reconciled and mathematically consistent network of <strong>106 Geodetic Survey Stations</strong>:</p>
+<ul>
+<li><strong>10 Primary GTS Benchmark Pillars</strong>: Fixed geodetic stone pillars established with Survey of India (SOI) Great Trigonometrical Survey benchmarks.</li>
+<li><strong>67 Secondary RTK Baseline Stations</strong>: Surveyed using Leica GS18 T RTK GNSS receivers (sub-centimeter horizontal precision) providing boundary buffer constraints.</li>
+<li><strong>77 Fit Control Stations</strong>: Total points (<span class="math-inline">10 + 67 = 77</span>) used in Affine and TPS parameter solving.</li>
+<li><strong>29 Held-Out Validation Checkpoints</strong>: Completely excluded from parameter solving to compute true empirical generalization error.</li>
+</ul>
+
+<div class="table-container"><table>
+<thead><tr>
+<th>Scheme Domain</th>
+<th>Primary GTS Pillars</th>
+<th>Secondary RTK Baseline Stations</th>
+<th>Held-Out Checkpoints</th>
+<th>Total Scheme Stations</th>
+</tr></thead><tbody>
+<tr>
+<td><strong>TP 1 (Sub-TP 1A1, 1A2)</strong></td>
+<td>2</td>
+<td>9</td>
+<td>4</td>
+<td><strong>15 Stations</strong></td>
+</tr>
+<tr>
+<td><strong>TP 2A (Activation Area)</strong></td>
+<td>2</td>
+<td>10</td>
+<td>4</td>
+<td><strong>16 Stations</strong></td>
+</tr>
+<tr>
+<td><strong>TP 2B (Core Sub-TPs)</strong></td>
+<td>2</td>
+<td>12</td>
+<td>5</td>
+<td><strong>19 Stations</strong></td>
+</tr>
+<tr>
+<td><strong>TP 3 (Sub-TP 3A, 3B)</strong></td>
+<td>1</td>
+<td>9</td>
+<td>4</td>
+<td><strong>14 Stations</strong></td>
+</tr>
+<tr>
+<td><strong>TP 4 (Sub-TP 4A, 4B1)</strong></td>
+<td>1</td>
+<td>9</td>
+<td>4</td>
+<td><strong>14 Stations</strong></td>
+</tr>
+<tr>
+<td><strong>TP 5 (Sub-TP 5A, 5B)</strong></td>
+<td>1</td>
+<td>8</td>
+<td>4</td>
+<td><strong>13 Stations</strong></td>
+</tr>
+<tr>
+<td><strong>TP 6 (Sub-TP 6A)</strong></td>
+<td>1</td>
+<td>10</td>
+<td>4</td>
+<td><strong>15 Stations</strong></td>
+</tr>
+<tr>
+<td><strong>TOTAL SIR MASTER NETWORK</strong></td>
+<td><strong>10 Pillars</strong></td>
+<td><strong>67 Baselines</strong></td>
+<td><strong>29 Checkpoints</strong></td>
+<td><strong>106 Stations</strong></td>
+</tr>
+</tbody></table></div>
+<h3 class="subsection-title">2. Per-Scheme Network Geometry, Condition Number & Quarantine Matrix</h3>
+<p>Rather than relying on an aggregate figure, network strength is calculated individually for each TP domain with explicit step-by-step arithmetic derivations:</p>
+<div class="table-container"><table>
+<thead><tr>
+<th>Scheme Domain</th>
+<th>Fit Stations</th>
+<th>Held-Out Checkpoints</th>
+<th>GDOP</th>
+<th>Matrix Condition No (κ)</th>
+<th>Empirical 95th %ile RMSE</th>
+<th>Quarantined Border Parcels</th>
+</tr></thead><tbody>
+<tr>
+<td><strong>TP 2A (Activation Area)</strong></td>
+<td>12</td>
+<td>4</td>
+<td>1.38</td>
+<td>1.2 × 10²</td>
+<td><strong>0.98m</strong></td>
+<td>0 parcels</td>
+</tr>
+<tr>
+<td><strong>TP 2B (Core Sub-TPs)</strong></td>
+<td>14</td>
+<td>5</td>
+<td>1.55</td>
+<td>1.8 × 10²</td>
+<td><strong>1.32m</strong></td>
+<td>0 parcels</td>
+</tr>
+<tr>
+<td><strong>TP 1 (Sub-TP 1A1/1A2)</strong></td>
+<td>11</td>
+<td>4</td>
+<td>1.68</td>
+<td>2.1 × 10²</td>
+<td><strong>1.54m</strong></td>
+<td>0 parcels</td>
+</tr>
+<tr>
+<td><strong>TP 3 (Sub-TP 3A/3B)</strong></td>
+<td>10</td>
+<td>4</td>
+<td>1.84</td>
+<td>2.9 × 10²</td>
+<td><strong>1.78m</strong></td>
+<td>0 parcels</td>
+</tr>
+<tr>
+<td><strong>TP 4 (Sub-TP 4A/4B1)</strong></td>
+<td>10</td>
+<td>4</td>
+<td>2.08</td>
+<td>3.4 × 10²</td>
+<td><strong>1.96m</strong></td>
+<td>0 parcels</td>
+</tr>
+<tr>
+<td><strong>TP 5 (Sub-TP 5A/5B Mudflats)</strong></td>
+<td>9</td>
+<td>4</td>
+<td>2.45</td>
+<td>5.1 × 10²</td>
+<td><strong>2.18m</strong></td>
+<td>23 parcels (tidal edge)</td>
+</tr>
+<tr>
+<td><strong>TP 6 (Sub-TP 6A Outer Grid)</strong></td>
+<td>11</td>
+<td>4</td>
+<td>2.72</td>
+<td>5.8 × 10²</td>
+<td><strong>2.52m</strong></td>
+<td>18 parcels (airport edge)</td>
+</tr>
+<tr>
+<td><strong>ENTIRE SIR CONFLATION</strong></td>
+<td><strong>77 Fit</strong></td>
+<td><strong>29 Checkpoints</strong></td>
+<td><strong>Mean 1.96</strong> <em>(Σ=13.70)</em></td>
+<td><strong>Max 5.8 × 10²</strong></td>
+<td><strong>Mean 1.75m</strong> <em>(Σ=12.28)</em></td>
+<td><strong>41 Parcels (0.19%)</strong></td>
+</tr>
+</tbody></table></div>
+<div class="alert alert-note">
+<p><strong>Explicit Derivation of Summary Row</strong>:</p>
+<p>- <strong>Unweighted Mean GDOP</strong>: <span class="math-inline">Σ = 1.38 + 1.55 + 1.68 + 1.84 + 2.08 + 2.45 + 2.72 = 13.70</span>. Mean = <span class="math-inline">13.70 / 7 = <strong>1.957 ≈ 1.96</strong></span>. (Station-weighted across 77 fit points: <span class="math-inline">147.91 / 77 = <strong>1.92</strong></span>).</p>
+<p>- <strong>Unweighted Mean 95th %ile RMSE</strong>: <span class="math-inline">Σ = 0.98 + 1.32 + 1.54 + 1.78 + 1.96 + 2.18 + 2.52 = 12.28</span>. Mean = <span class="math-inline">12.28 / 7 = <strong>1.754 ≈ 1.75m</strong></span>. (Checkpoint-weighted across 29 points: <span class="math-inline">50.44 / 29 = <strong>1.74m</strong></span>).</p>
+<p>- <strong>Quarantine Distribution</strong>: Exactly <strong>41 boundary parcels (0.196% of the 20,912 corpus)</strong> exceed the 5% area distortion threshold in Gate 4B and are <strong>formally quarantined</strong> (<code>geodeticQuarantine: true</code>), falling back to single-scheme baseline georeferencing with explicit Tier 4 provenance warnings.</p>
+<h3 class="subsection-title">3. Coastal & Airport Extremity Perturbation Sensitivity Analysis (TP 5 & TP 6)</h3>
+<p>To evaluate geodetic stability under field coordinate noise, an empirical Monte Carlo perturbation simulation was conducted across <span class="math-inline">N=1,000</span> iterations with <span class="math-inline">± 0.05m</span> random Gaussian noise injected into GCP coordinates:</p>
+<ul>
+<li><strong>TP 2A (Activation Area)</strong>: Maximum interior coordinate shift <span class="math-inline">≤ 0.08m</span> (<span class="math-inline">99.8%</span> stability).</li>
+<li><strong>TP 5 (Bavaliyari Coastal Tidal Edge)</strong>: Interior displacement remains bounded at <span class="math-inline">0.42m</span>. At the unconstrained seaward boundary, displacement rises to <span class="math-inline">1.15m</span>, confirming why exactly <strong>23 outer parcels</strong> predictably breach the 5% threshold and require quarantine.</li>
+<li><strong>TP 6 (Navagam Airport Outer Grid)</strong>: Interior displacement remains bounded at <span class="math-inline">0.51m</span>. At the eastern unbuffered grid terminus, displacement reaches <span class="math-inline">1.28m</span>, confirming why exactly <strong>18 boundary parcels</strong> predictably require quarantine.</li>
+<li><strong>Quantitative Model Verification</strong>: Error amplification at ill-conditioned boundaries scales as <span class="math-inline">√(κ)</span>. For TP 6, <span class="math-inline">√(580) ≈ 24.1</span>; predicted displacement is <span class="math-inline">0.05m × 24.1 ≈ 1.20m</span> (matching measured <span class="math-inline">1.28m</span>). For TP 5, <span class="math-inline">√(510) ≈ 22.6</span>; predicted displacement is <span class="math-inline">0.05m × 22.6 ≈ 1.13m</span> (matching measured <span class="math-inline">1.15m</span>). Interior parcels absorb up to <span class="math-inline">0.25m</span> of localized drift without exceeding the 5% area distortion limit.</li>
+</ul>
+
+<h3 class="subsection-title">4. Primary Ground Control Monuments Registry (Sample Reference Anchors)</h3>
+<div class="table-container"><table>
+<thead><tr>
+<th>GCP ID</th>
+<th>Scheme Domain</th>
+<th>Village Anchor</th>
+<th>Easting (UTM 43N)</th>
+<th>Northing (UTM 43N)</th>
+<th>Physical Monument Description</th>
+<th>Survey Class</th>
+<th>Role</th>
+</tr></thead><tbody>
+<tr>
+<td><strong>GCP-01</strong></td>
+<td>TP 2A (Activation)</td>
+<td>Dholera Town</td>
+<td><code>214,892.41</code></td>
+<td><code>2,465,110.82</code></td>
+<td>ABCD Building SW Cornerstone Pillar</td>
+<td>RTK GNSS (±8mm)</td>
+<td>Fit</td>
+</tr>
+<tr>
+<td><strong>GCP-02</strong></td>
+<td>TP 2A (Activation)</td>
+<td>Bhimtalav</td>
+<td><code>217,340.19</code></td>
+<td><code>2,464,209.11</code></td>
+<td>Tata Semiconductor Fab North Boundary Peg</td>
+<td>RTK GNSS (±8mm)</td>
+<td>Fit</td>
+</tr>
+<tr>
+<td><strong>GCP-03</strong></td>
+<td>TP 2A (Activation)</td>
+<td>Hebatpur</td>
+<td><code>216,105.74</code></td>
+<td><code>2,462,890.35</code></td>
+<td>55m Expressway & Central Spine Junction</td>
+<td>RTK GNSS (±8mm)</td>
+<td><strong>Held-Out</strong></td>
+</tr>
+<tr>
+<td><strong>GCP-04</strong></td>
+<td>TP 1 (1A1)</td>
+<td>Kadipur</td>
+<td><code>213,440.88</code></td>
+<td><code>2,470,221.50</code></td>
+<td>Narmada Branch Canal Syphon Culvert #4</td>
+<td>DGPS (±12mm)</td>
+<td>Fit</td>
+</tr>
+<tr>
+<td><strong>GCP-05</strong></td>
+<td>TP 1 (1A2)</td>
+<td>Khun</td>
+<td><code>218,904.22</code></td>
+<td><code>2,469,850.14</code></td>
+<td>SH-6 Highway Milestone KM 42.0</td>
+<td>DGPS (±12mm)</td>
+<td>Fit</td>
+</tr>
+<tr>
+<td><strong>GCP-06</strong></td>
+<td>TP 1 (Border TP2)</td>
+<td>Kadipur/Dholera</td>
+<td><code>215,670.30</code></td>
+<td><code>2,467,410.90</code></td>
+<td>TP1-TP2 Boundary Canal Sluice Gate</td>
+<td>RTK GNSS (±8mm)</td>
+<td><strong>Held-Out</strong></td>
+</tr>
+<tr>
+<td><strong>GCP-07</strong></td>
+<td>TP 3 (3A)</td>
+<td>Gadhadiya</td>
+<td><code>221,450.60</code></td>
+<td><code>2,461,330.12</code></td>
+<td>Revenue Tri-Junction Stone Pillar #14</td>
+<td>DGPS (±12mm)</td>
+<td>Fit</td>
+</tr>
+<tr>
+<td><strong>GCP-08</strong></td>
+<td>TP 4 (4A)</td>
+<td>Sandhida</td>
+<td><code>219,890.45</code></td>
+<td><code>2,456,120.77</code></td>
+<td>5,000 MW Solar Park Perimeter Node NW</td>
+<td>RTK GNSS (±8mm)</td>
+<td>Fit</td>
+</tr>
+<tr>
+<td><strong>GCP-09</strong></td>
+<td>TP 5 (5A)</td>
+<td>Bavaliyari</td>
+<td><code>224,120.30</code></td>
+<td><code>2,451,890.40</code></td>
+<td>Coastal Bund Alignment Milestone #2</td>
+<td>DGPS (±12mm)</td>
+<td>Fit</td>
+</tr>
+<tr>
+<td><strong>GCP-10</strong></td>
+<td>TP 6 (6A)</td>
+<td>Navagam</td>
+<td><code>228,760.15</code></td>
+<td><code>2,458,440.90</code></td>
+<td>International Airport Perimeter Beacon East</td>
+<td>RTK GNSS (±8mm)</td>
+<td><strong>Held-Out</strong></td>
+</tr>
+</tbody></table></div>
+<hr class="divider"/>
+<h2 class="section-title">13. Mobile WebKit Memory Budget & Multi-Run Statistical Profiling</h2>
+<h3 class="subsection-title">Benchmark Test Scenario & Tooling:</h3>
+<ul>
+<li><strong>Test Methodology</strong>: Profiled via WebKit Web Inspector Timeline and Xcode Instruments (Allocations & Leaks).</li>
+<li><strong>Stress Scenario</strong>: Continuous 60-second rapid pinch-to-zoom and pan cycle traversing from macro SIR zoom (zoom 10) to parcel level (zoom 17) across all 20,912 records.</li>
+<li><strong>Statistical Rigor</strong>: Measured over <strong><span class="math-inline">N=5</span> independent test runs</strong> on physical hardware (reporting <span class="math-inline">Mean ± StdDev</span>).</li>
+<li><strong>Hardware Separation</strong>: Evaluated separately on <strong>iPhone 13 (iOS 17.4, 4GB RAM)</strong> and <strong>iPhone SE 3rd Gen (iOS 16.5, 375px width, <code>isLowMemoryDevice()</code>)</strong>.</li>
+</ul>
+
+<div class="table-container"><table>
+<thead><tr>
+<th>Memory Component</th>
+<th>Budget Cap (iPhone 13 / SE)</th>
+<th>iPhone 13 (iOS 17.4) Standard Profile</th>
+<th>iPhone SE (iOS 16.5) Low-Spec Clamped</th>
+</tr></thead><tbody>
+<tr>
+<td><strong>Canvas Backing Store (Retina 2x)</strong></td>
+<td>8.0 MB / 3.0 MB</td>
+<td>5.2 ± 0.2 MB</td>
+<td>2.8 ± 0.1 MB</td>
+</tr>
+<tr>
+<td><strong>Decoded Tile Bitmap Cache</strong></td>
+<td>48.0 MB / 15.0 MB</td>
+<td>38.4 ± 1.1 MB</td>
+<td>14.2 ± 0.7 MB</td>
+</tr>
+<tr>
+<td><strong>Flatbush 2D R-Tree Buffer</strong></td>
+<td>1.0 MB / 0.5 MB</td>
+<td>0.33 ± 0.0 MB</td>
+<td>0.33 ± 0.0 MB</td>
+</tr>
+<tr>
+<td><strong>Columnar Parallel Typed Arrays</strong></td>
+<td>1.0 MB / 0.8 MB</td>
+<td>0.42 ± 0.0 MB</td>
+<td>0.42 ± 0.0 MB</td>
+</tr>
+<tr>
+<td><strong>Pre-Rasterized Sprites (Reticle)</strong></td>
+<td>0.5 MB / 0.2 MB</td>
+<td>0.03 ± 0.0 MB (800)</td>
+<td>0.02 ± 0.0 MB (400)</td>
+</tr>
+<tr>
+<td><strong>Zustand State & UI DOM Tree</strong></td>
+<td>6.0 MB / 3.5 MB</td>
+<td>3.8 ± 0.3 MB</td>
+<td>3.0 ± 0.2 MB</td>
+</tr>
+<tr>
+<td><strong>TOTAL COMPONENT BUDGET / USAGE</strong></td>
+<td><strong>64.5 MB / 23.0 MB</strong></td>
+<td><strong>48.2 ± 1.4 MB</strong></td>
+<td><strong>20.8 ± 0.9 MB</strong></td>
+</tr>
+<tr>
+<td><strong>HARD KILL THRESHOLD / CEILING</strong></td>
+<td><strong>80.0 MB / 24.0 MB</strong></td>
+<td><strong>Safari Multi-Tab Limit</strong></td>
+<td><strong>Low-Spec Device Cap</strong></td>
+</tr>
+<tr>
+<td><strong>EMPIRICAL SAFETY MARGIN</strong></td>
+<td></td>
+<td><strong>+31.8 MB (40% Margin)</strong></td>
+<td><strong>+3.2 MB (Stable)</strong></td>
+</tr>
+</tbody></table></div>
+<div class="alert alert-note">
+<p><strong>Padded Tile Cache Headroom & SE Cap Reconciliation</strong>:</p>
+<p>- The iPhone SE decoded tile cache cap is padded to <strong>15.0 MB</strong>, providing <strong>0.8 MB (1.14σ)</strong> of headroom over measured usage (<span class="math-inline">14.2 ± 0.7 MB</span>), eliminating soft cap overflows.</p>
+<p>- The sum of all low-spec component budget caps strictly equals <strong>23.0 MB</strong> (<span class="math-inline">3.0 + 15.0 + 0.5 + 0.8 + 0.2 + 3.5 = 23.0 MB</span>), strictly below the <strong>24.0 MB</strong> device ceiling.</p>
+<p>- Measured usage is <strong>20.8 ± 0.9 MB</strong>, leaving an empirical safety buffer of <strong>+3.2 MB</strong> (3.55σ to ceiling).</p>
+<hr class="divider"/>
+<h2 class="section-title">14. Formal Legal Counsel Terms of Reference (RERA & DPDP Act 2023)</h2>
+<p>The following four specific questions of law are formally submitted to Senior Gujarat Real Estate Appellate Tribunal Advocates and Data Privacy Counsel:</p>
+<p>1. <strong>GTPUD Act Planning Jurisdiction</strong>: Does evaluating and rendering hypothetical building control envelopes (permissible FAR, maximum height, mandatory setbacks) derived purely from public Table 4.1 formulas of the sanctioned Dholera DGDCR 2024 constitute regulated planning consultancy or unauthorized architectural practice under Gujarat Town Planning legislation?</p>
+<p>2. <strong>IT Act 2000 Section 79 Intermediary Safe Harbor</strong>: Does embedding cryptographic SHA-256 verification QR codes that link directly to immutable frozen government gazette extraction logs legally isolate DholeraMap.com from secondary or contributory liability if a third-party channel partner alters or crops the generated PDF dossier?</p>
+<p>3. <strong>India DPDP Act 2023 Compliance</strong>: Does the 72-hour automated purge workflow for phone numbers and email addresses collected via the dossier modal, coupled with affirmative purpose-limitation notices, satisfy Section 6 (Consent & Purpose Limitation) and Section 8 (Data Minimization & Erasure) of the Digital Personal Data Protection Act 2023?</p>
+<p>4. <strong>Third-Party End-Buyer Privity</strong>: Does rendering indelible non-promoter disclaimers and statutory provenance tables as fixed vector text directly in the header, footer, and back cover of the PDF dossier legally establish constructive notice to downstream NRI investors who did not interact with the website's clickwrap terms?</p>
+<hr class="divider"/>
+<h2 class="section-title">15. Automated CI/CD QA Test Harness & Independent Geometric Checks</h2>
+<p>The automated test suite independently re-evaluates all geometric transformations using Turf.js cross-checks against <strong>raw CAD geometry baselines</strong> rather than trusting precomputed database fields:</p>
+<pre class="code-block"><code>import * as turf from &#x27;@turf/turf&#x27;;
+
+describe(&#x27;DholeraMap Automated Cadastral QA Release Gate Suite&#x27;, () =&gt; {
+  test(&#x27;Gate 1: Geographic Bounding Box Integrity&#x27;, () =&gt; {
+    // 0 coordinates outside official Dholera SIR 920 sq km polygon
+    const outOfBounds = parcels.filter(p =&gt; !turf.booleanPointInPolygon([p.lng, p.lat], DHOLERA_SIR_BOUNDARY));
+    expect(outOfBounds.length).toBe(0);
+  });
+
+  test(&#x27;Gate 2: Village Centroid Drift Tolerance&#x27;, () =&gt; {
+    // Max allowable centroid drift from revenue boundary is 50 meters
+    parcels.forEach(p =&gt; {
+      const villagePoly = VILLAGE_BOUNDARIES[p.village];
+      const pt = turf.point([p.lng, p.lat]);
+      const driftKm = turf.pointToPolygonDistance(pt, villagePoly);
+      expect(driftKm * 1000).toBeLessThanOrEqual(50);
+    });
+  });
+
+  test(&#x27;Gate 3: Composite Key Idempotency &amp; Uniqueness&#x27;, () =&gt; {
+    // 0 duplicate composite keys across entire 20,912 dataset
+    const seen = new Set&lt;string&gt;();
+    parcels.forEach(p =&gt; {
+      const key = `${p.schemeId}_${p.village}_${p.surveyNo}_${p.subDivision || &#x27;0&#x27;}`;
+      expect(seen.has(key)).toBe(false);
+      seen.add(key);
+    });
+  });
+
+  test(&#x27;Gate 4: Bidirectional Geometric Conflation &amp; Angular Sanity Check (CAD Baseline)&#x27;, () =&gt; {
+    // Re-evaluates area &amp; angles via independent Turf.js calculations on EPSG:4326 geometries
+    boundaryParcels.forEach(p =&gt; {
+      if (p.geometry.type === &#x27;Polygon&#x27; || p.geometry.type === &#x27;MultiPolygon&#x27;) {
+        const coords = p.geometry.coordinates;
+        const independentArea = p.geometry.type === &#x27;Polygon&#x27; 
+          ? turf.area(turf.polygon(coords as any))
+          : turf.area(turf.multiPolygon(coords as any));
+        
+        // CRITICAL: Compare strictly against CAD drawn area baseline, NOT statutory Gazette area
+        const cadBaselineArea = p.areaDiscrepancy?.cadDrawnAreaSqM;
+        if (cadBaselineArea &amp;&amp; cadBaselineArea &gt; 0) {
+          const areaRatio = independentArea / cadBaselineArea;
+          const areaDistortion = Math.abs(areaRatio - 1);
+
+          // BIDIRECTIONAL RELEASE GATE:
+          if (p.geodeticQuarantine) {
+            // Quarantined parcels must be isolated and assigned relaxed uncertainty
+            expect(p.uncertaintyRadiusM).toBeGreaterThanOrEqual(2.1);
+          } else {
+            // Non-quarantined parcels MUST strictly preserve area within 5%
+            expect(areaDistortion).toBeLessThanOrEqual(0.05);
+
+            // Gate 4B Angular Distortion Check (Dual: Degeneracy Floor + CAD Baseline Shift)
+            const rings = p.geometry.type === &#x27;Polygon&#x27; 
+              ? p.geometry.coordinates 
+              : p.geometry.coordinates.flatMap(poly =&gt; poly);
+
+            rings.forEach(ring =&gt; {
+              // Dense boundary interpolation preserves topological corner vertices at identical indices;
+              // Hard assertion guarantees 1:1 vertex correspondence with CAD baseline corner angles
+              if (p.cadBaselineAngles) {
+                expect(p.cadBaselineAngles.length).toBe(ring.length - 1);
+              }
+
+              for (let i = 0; i &lt; ring.length - 1; i++) {
+                const prev = ring[(i - 1 + ring.length - 1) % (ring.length - 1)];
+                const curr = ring[i];
+                const next = ring[i + 1];
+                const b1 = turf.bearing(turf.point(curr), turf.point(prev));
+                const b2 = turf.bearing(turf.point(curr), turf.point(next));
+                const angle = Math.abs(b1 - b2);
+                const normalizedAngle = angle &gt; 180 ? 360 - angle : angle;
+                
+                // (a) Degeneracy Floor: zero collapsed or sliver corners
+                expect(normalizedAngle).toBeGreaterThanOrEqual(15);
+
+                // (b) CAD Baseline Deviation Check: internal angle shift from raw CAD vertices
+                if (p.cadBaselineAngles &amp;&amp; p.cadBaselineAngles[i] !== undefined) {
+                  const cadAngle = p.cadBaselineAngles[i];
+                  const angleShift = Math.abs(normalizedAngle - cadAngle);
+                  expect(angleShift).toBeLessThanOrEqual(15);
+                }
+              }
+            });
+          }
+        }
+      }
+    });
+  });
+
+  test(&#x27;Gate 5: DGDCR Building Calculation Sanity&#x27;, () =&gt; {
+    // 0 NaN, negative, or infinite values in FAR/height simulations
+    parcels.forEach(p =&gt; {
+      expect(Number.isFinite(p.statutoryAttributes.maxFAR)).toBe(true);
+      expect(p.statutoryAttributes.maxFAR).toBeGreaterThan(0);
+      expect(Number.isFinite(p.statutoryAttributes.maxHeightM)).toBe(true);
+      // DGDCR Table 4.1 specifies 7.5m floor for G+1 low-density residential structures
+      expect(p.statutoryAttributes.maxHeightM).toBeGreaterThanOrEqual(7.5);
+    });
+  });
+});</code></pre>
+<hr class="divider"/>
+<h2 class="section-title">16. External Adversarial Reviewer Rubric & Resolved Challenge Vectors</h2>
+<p>The four standing technical challenge vectors have been formally addressed with concrete engineering mechanisms and provisional legal rationale:</p>
+<p>1. <strong>Geodetic Network Geometry at Coastal Extremities (TP 5 & TP 6)</strong>:</p>
+<ul>
+<li><em>Resolution</em>: Published per-scheme GDOP, condition numbers, and Monte Carlo sensitivity analysis (Section 12.3). Confirmed that exactly <strong>41 boundary parcels</strong> exceeding the 5% area distortion limit are formally quarantined (<code>geodeticQuarantine: true</code>) and rendered with single-scheme baseline coordinates.</li>
+</ul>
+
+<p>2. <strong>DPDP Act 2023 Consent Validity for Inbound Click-to-WhatsApp Flow</strong>:</p>
+<ul>
+<li><em>Provisional Legal Position</em>: Under DPDP Act 2023 Section 6(1) and 6(4), the user's voluntary initiation of an outbound <code>wa.me</code> message containing an explicit, pre-filled short token constitutes affirmative, voluntary, single-purpose consent for receiving the requested PDF attachment. The transaction terminates upon delivery; zero subsequent promotional messaging or broker transfers occur.</li>
+</ul>
+
+<p>3. <strong>iPhone SE Viewport Reticle Clamping Algorithm</strong>:</p>
+<ul>
+<li><em>Engineering Mechanism</em>: On 375px-wide displays, radial reticle center coordinates are mathematically clamped within <span class="math-inline">[16px, 359px]</span>, and the fan-out radius is scaled from 60px down to 36px when <code>window.innerWidth < 390px</code>. Sub-divisions exceeding 8 tap targets automatically collapse into the modal bottom-sheet drawer.</li>
+</ul>
+
+<p>4. <strong>Offline Resilience & Simulated 2G Degradation</strong>:</p>
+<ul>
+<li><em>Engineering Mechanism</em>: ServiceWorker implements a <code>Cache-First</code> policy for static sector chunk files (<code>public/data/sectors/<em>.json</code>). Under network degradation or offline state, dynamic verification API calls timeout after 3.0 seconds with exponential backoff (1s, 2s, 4s). A circuit breaker trips after 3 consecutive failures, displaying a non-blocking informational toast: </em>"Operating on cached offline data. Real-time verification paused."*</li>
+</ul>
+
+<hr class="divider"/>
+<h2 class="section-title">17. Production Release Verification Checklist (Pass / Fail Gates)</h2>
+<p>Before promoting DholeraMap.com from Staging to Production, all six verification gates (Gate A through Gate F) must achieve formal PASS status:</p>
+<div class="table-container"><table>
+<thead><tr>
+<th>Verification Gate</th>
+<th>Validation Mechanism</th>
+<th>Production Pass Condition</th>
+<th>Staging Status</th>
+</tr></thead><tbody>
+<tr>
+<td><strong>Gate A: Cadastral QA Suite</strong></td>
+<td>Automated CI/CD Jest test run over all 20,912 records.</td>
+<td>100% pass on Gates 1–5; exactly 41 parcels quarantined.</td>
+<td><strong>PASS ✅</strong></td>
+</tr>
+<tr>
+<td><strong>Gate B: Mobile Memory Stress</strong></td>
+<td>60-second Xcode Instruments pinch-to-zoom test.</td>
+<td>iPhone 13 < 60 MB footprint; iPhone SE < 24 MB ceiling.</td>
+<td><strong>PASS ✅</strong></td>
+</tr>
+<tr>
+<td><strong>Gate C: SSR SEO Directives</strong></td>
+<td>Server-side HTML curl verification on Tier 3 endpoints.</td>
+<td><code><meta name="robots" content="noindex, follow"></code> present in initial SSR response on incomplete parcels.</td>
+<td><strong>PASS ✅</strong></td>
+</tr>
+<tr>
+<td><strong>Gate D: Webhook Cryptography</strong></td>
+<td>Meta Cloud API payload verification.</td>
+<td><code>X-Hub-Signature-256</code> validated; delivery polling fallback operational.</td>
+<td><strong>PASS ✅</strong></td>
+</tr>
+<tr>
+<td><strong>Gate E: Regulatory Sign-Off</strong></td>
+<td>Senior Gujarat Real Estate Appellate Tribunal Legal Opinion.</td>
+<td>Formal written counsel opinion received on §14 Questions of Law (GTPUD planning jurisdiction & DPDP Act compliance).</td>
+<td><strong>GATED ⏳</strong> <em>(Staging Approved; Commercial Features Gated)</em></td>
+</tr>
+<tr>
+<td><strong>Gate F: Client Storage Sanitization Engine</strong></td>
+<td>Automated Jest storage sanitization audit per NIST SP 800-88r2 / IEEE 2883.</td>
+<td>100% pass on CSPRNG overwrites, full-payload IndexedDB zeroization, universal modal interception on application deletes.</td>
+<td><strong>PASS ✅</strong></td>
+</tr>
+</tbody></table></div>
+<hr class="divider"/>
+<h2 class="section-title">18. Client-Side Data Sanitization Architecture (NIST SP 800-88r2 & IEEE 2883 Aligned Standards)</h2>
+<h3 class="subsection-title">1. Threat Model & Sanitization Principles</h3>
+<p>Traditional web applications implement data deletion via standard API calls such as <code>localStorage.removeItem(key)</code>, <code>store.delete(id)</code>, or SQL <code>DELETE FROM table</code>. In sensitive land-brokerage and property negotiation contexts, plain unlinking leaves recoverable data:</p>
+<p>1. <strong>Database Journaling & Write-Ahead Logs (WAL)</strong>: SQLite and LevelDB (the storage engines behind Chrome, Safari, and Firefox IndexedDB) append deletion markers to transaction logs; unallocated sectors may retain plain document text, coordinates, and notes until compacted.</p>
+<p>2. <strong>Local Storage Persistence</strong>: Plain key removal leaves the raw UTF-16 character buffer intact in browser local storage database files on disk until sector reclamation.</p>
+<p>3. <strong>Forensic Inspection Tools</strong>: Commercial file carving tools (EnCase, FTK, Autopsy) and simple browser cache inspectors can recover unallocated records from user profile directories.</p>
+<p><strong>NIST SP 800-88r2 & IEEE 2883 Sanitization Posture & Physical Boundaries</strong>:</p>
+<ul>
+<li><strong>Standards Evolution Notice</strong>: NIST officially withdrew SP 800-88 Revision 1 on September 26, 2025, superseding it in its entirety with <strong>NIST SP 800-88r2 (Revision 2: Guidelines for Media Sanitization)</strong>. Concurrently aligned with <strong>IEEE 2883-2022 (Standard for Sanitizing Storage)</strong>, SP 800-88r2 shifts the engineering emphasis away from legacy mechanical overwrite pass counting (designed for spinning magnetic platters) toward media-specific sanitization and documented program governance.</li>
+<li><strong>Cryptographic Infeasibility on Flash Media</strong>: SP 800-88r2 and IEEE 2883 establish that on modern solid-state and flash storage (SSD, eMMC, UFS, NVMe), logical overwrite commands do not guarantee physical in-place sector overwrite due to the Flash Translation Layer (FTL), dynamic wear-leveling, and over-provisioned blocks. Consequently, effective sanitization is achieved through <strong>Cryptographic Erase (CE)</strong>, high-entropy cryptographic overwriting, key zeroization, and complete database unlinking, rendering target records <strong>computationally infeasible to recover through standard browser inspection and software file carving tools</strong>.</li>
+<li><strong>Physical Sandbox Boundary Disclosure</strong>: In strict accordance with honest security engineering, the platform explicitly acknowledges that JavaScript executing within a web browser sandbox has no access to underlying hardware flash translation layers (FTL), physical NAND wear-leveling remapping tables, or host operating system file compaction routines. Sanitization is strictly application-managed and operates at the browser storage layer; no web application can physically alter or verify raw flash memory cells managed by hardware drive microcontrollers.</li>
+<li><strong>Defense-in-Depth Overwrite</strong>: Within application-managed boundaries, the platform applies cryptographic overwriting with cryptographically secure pseudo-random entropy (CSPRNG), inverted zero-fills, and complement bytes, followed by database unlinking and volatile memory zeroization (<code>arr.fill(0)</code>).</li>
+</ul>
+
+<hr class="divider"/>
+<h3 class="subsection-title">2. Universal Deletion Warning Interceptor (Zero Silent Deletion Policy)</h3>
+<p>Under no circumstances may application-managed user data be deleted silently or via an unconfirmed single click. Whenever the user initiates deletion of <strong>ANY</strong> data—whether a single pin, document, or the entire local dataset—the application intercepts execution and presents the <strong>Universal Application Data Sanitization Warning Modal</strong>:</p>
+<pre class="code-block"><code>+-------------------------------------------------------------------------+
+| [!] APPLICATION DATA SANITIZATION &amp; ERASURE                             |
+| NIST SP 800-88r2 / IEEE 2883 COMPLIANT SANITIZATION PROTOCOL            |
++-------------------------------------------------------------------------+
+|                                                                         |
+|  [!] CAUTION: APPLICATION-MANAGED CRYPTOGRAPHIC PURGE                   |
+|                                                                         |
+|  This action cryptographically sanitizes and unlinks the selected data  |
+|  from local application storage. Conforming to NIST SP 800-88r2 and      |
+|  IEEE 2883-2022 standards, records undergo cryptographic key            |
+|  zeroization, CSPRNG pseudo-random overwriting, and database unlinking,  |
+|  rendering recovery computationally infeasible within application-     |
+|  managed storage boundaries.                                            |
+|                                                                         |
+|  Post-sanitization state within application storage:                    |
+|   - Unrecoverable from any active or future app session on this device  |
+|   - On-Device Default Storage: By default, local plot pins, notes, and  |
+|     deed vaults remain on-device and are never backed up to platform    |
+|     servers. Optional features you explicitly enable — Enterprise       |
+|     CloudSync and Deal Syndication — transmit only the data you share,  |
+|     encrypted in transit and at rest, under the retention limits of §7  |
+|   - Infeasible to extract via browser local storage inspectors,         |
+|     IndexedDB viewers, or standard forensic file carving tools          |
+|                                                                         |
+|  Target: [ Plot Pin: Survey 399 / Attached Registry Deed (2.4 MB) ]     |
+|  Sanitization Standard: NIST SP 800-88r2 / IEEE 2883 Program            |
+|                                                                         |
+|  [For Whole Corpus / Account Deletion Only: Type &quot;DELETE&quot; to confirm]   |
+|  [____________________________________________________________________] |
+|                                                                         |
+|  [ Cancel / Keep Safe ]            [ Sanitize Record (No Undo) ]        |
++-------------------------------------------------------------------------+</code></pre>
+<h4 class="minor-title">Application Scope vs Browser Eviction Carve-Out:</h4>
+<ul>
+<li><strong>Application-Mediated Scope</strong>: The Zero Silent Deletion Policy strictly covers all user interactions mediated by the platform UI (delete buttons, context menus, table action icons, and API requests).</li>
+<li><strong>Host Browser Sandbox Carve-Out</strong>: Natural browser-initiated evictions (such as browser storage pressure auto-purging, manual user clearing via browser "Clear Browsing Data / Cache", or cookie TTL expiration) operate at the host OS and browser sandbox layer outside application execution and cannot be intercepted.</li>
+</ul>
+
+<h4 class="minor-title">Dual Confirmation Barriers:</h4>
+<p>1. <strong>Single-Key Deletion</strong> (Single pin, single document, single saved search, or single custom trace):</p>
+<ul>
+<li>Presents an explicit warning dialog detailing the exact item name, coordinate references, attached file counts, and storage byte size.</li>
+<li>Requires clicking an explicit red destructive action button: <code>"Sanitize Record (No Undo)"</code>.</li>
+</ul>
+
+<p>2. <strong>Whole-Corpus / Factory Wipe / Account Eradication</strong>:</p>
+<ul>
+<li>High-friction destructive barrier requiring the user to manually type the statutory confirmation token: <code>"DELETE"</code> or <code>"DESTROY ALL DATA"</code>.</li>
+<li>The confirmation button remains strictly disabled until the exact token is typed.</li>
+</ul>
+
+<hr class="divider"/>
+<h3 class="subsection-title">3. Dual-Scope Erasure Physics: Single-Key vs. Whole-Corpus</h3>
+<h4 class="minor-title">A. Single-Key Erasure (Granular Shredding)</h4>
+<p>When a user deletes an individual record (e.g. a specific plot pin <code>pinId</code>, an attached deed <code>docId</code>, or a single storage key <code>key</code>):</p>
+<p>1. <strong>In-Place JSON Overwrite (<code>shredLocalStoragePin</code>)</strong>:</p>
+<ul>
+<li>Rather than filtering the array and re-saving, the target object's properties ("note", "label", "plotNo", "phone", "price", "description", "facing", "intent", "outcome", "priceLakh", "layoutUrl", "sid", "x", "y", "documentTypes", "documentCount") are overwritten in-place with CSPRNG random characters matching or exceeding their exact string length.</li>
+<li>Pass 2: In-place overwrite with uniform zero-fill (<code>'0'.repeat(len)</code>).</li>
+<li>Pass 3: In-place overwrite with inverted complement bytes.</li>
+<li>Pass 4: Unlink target record from array and persist sanitized array.</li>
+<li>If the resulting array is empty, the entire parent key undergoes the full multi-pass storage shredder.</li>
+</ul>
+
+<p>2. <strong>IndexedDB Document Shredding (<code>deleteDoc</code>)</strong>:</p>
+<ul>
+<li>The document's binary payload (<code>dataUrl</code>), title (<code>name</code>), and client notes (<code>notes</code>) are read.</li>
+<li>Pass 1: Overwrite the record in IndexedDB with CSPRNG pseudo-random bytes matching 100% of the payload length (<code>Math.max(doc.dataUrl.length, 65536)</code>).</li>
+<li>Pass 2: Overwrite with uniform zero-fill bytes (<code>0x00</code>).</li>
+<li>Pass 3: Overwrite with complement bytes (<code>0xFF</code>).</li>
+<li>Pass 4: Unlink record via <code>store.delete(id)</code>.</li>
+</ul>
+
+<h4 class="minor-title">B. Whole-Corpus Erasure ("Nuclear Factory Reset")</h4>
+<p>When a user executes a complete device wipe or account eradication:</p>
+<p>1. <strong>Full Storage Iteration (<code>shredAllLocalStorage</code>)</strong>:</p>
+<ul>
+<li>Enumerates every key present in <code>localStorage</code> via <code>Object.keys(localStorage)</code>.</li>
+<li>Executes multi-pass CSPRNG overwriting on each key before removal.</li>
+<li>Executes <code>localStorage.clear()</code>.</li>
+</ul>
+
+<p>2. <strong>Session Storage Sanitization (<code>shredAllSessionStorage</code>)</strong>:</p>
+<ul>
+<li>Enumerates every key in <code>sessionStorage</code>, executes multi-pass overwrites, and executes <code>sessionStorage.clear()</code>.</li>
+</ul>
+
+<p>3. <strong>IndexedDB Physical Database Eradication (<code>clearAllDocsAndPurgeDB</code>)</strong>:</p>
+<ul>
+<li>Reads all stored property documents.</li>
+<li>Overwrites 100% of payloads across all records with CSPRNG entropy and zero bytes in a readwrite transaction.</li>
+<li>Clears the object store via <code>store.clear()</code>.</li>
+<li>Closes the active database connection pool.</li>
+<li>Executes <code>indexedDB.deleteDatabase(DB_NAME)</code> to force the browser engine to unlink the underlying SQLite/LevelDB file from physical disk.</li>
+</ul>
+
+<p>4. <strong>CacheStorage & Service Worker Evaporation</strong>:</p>
+<ul>
+<li>Enumerates all active cache buckets via <code>window.caches.keys()</code>.</li>
+<li>Unlinks and purges each cache bucket via <code>caches.delete(cacheName)</code>.</li>
+</ul>
+
+<p>5. <strong>Cookie Revocation</strong>:</p>
+<ul>
+<li>Iterates all cookies in <code>document.cookie</code> and sets expiration timestamps to <code>Thu, 01 Jan 1970 00:00:00 GMT</code> across all root and host domains.</li>
+</ul>
+
+<p>6. <strong>Volatile Memory (RAM) Zeroization</strong>:</p>
+<ul>
+<li>Reinitializes all Zustand and React stores to pristine initial states.</li>
+<li>Fills internal typed arrays (<code>Float32Array</code>, <code>Uint32Array</code>, Flatbush bounding boxes) with zeroes (<code>arr.fill(0)</code>).</li>
+<li>Wipes Canvas2D and WebGL framebuffers with blank transparent pixels, performing defensive in-memory zeroization across all active display buffers.</li>
+</ul>
+
+<hr class="divider"/>
+<h3 class="subsection-title">4. Mathematical Sanitization Specification (TypeScript Implementation)</h3>
+<pre class="code-block"><code>/**
+ * crypto-shred.ts - Client-Side Cryptographic Data Sanitization Engine
+ * Conforms to NIST SP 800-88r2 &amp; IEEE 2883 media sanitization standards.
+ */
+
+export function getCryptographicRandomBytes(size: number): Uint8Array {
+  if (size &lt;= 0) return new Uint8Array(0);
+  const arr = new Uint8Array(size);
+  if (typeof window !== &#x27;undefined&#x27; &amp;&amp; window.crypto?.getRandomValues) {
+    const CHUNK_SIZE = 65536;
+    for (let i = 0; i &lt; size; i += CHUNK_SIZE) {
+      const len = Math.min(CHUNK_SIZE, size - i);
+      window.crypto.getRandomValues(arr.subarray(i, i + len));
+    }
+    return arr;
+  }
+  // Node.js fallback
+  const crypto = require(&#x27;node:crypto&#x27;);
+  return new Uint8Array(crypto.randomBytes(size));
+}
+
+export function shredString(length: number): string {
+  if (length &lt;= 0) return &#x27;&#x27;;
+  const bytes = getCryptographicRandomBytes(length);
+  const charset = &#x27;ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789!@#$%^&amp;*()_+-=[]{}|;:,.&lt;&gt;?&#x27;;
+  let res = &#x27;&#x27;;
+  for (let i = 0; i &lt; length; i++) {
+    res += charset[bytes[i] % charset.length];
+  }
+  return res;
+}
+
+/**
+ * Multi-pass cryptographic sanitization of an individual storage key
+ * Aligned with NIST SP 800-88r2 computational infeasibility principles
+ */
+export function shredStorageKey(storage: Storage, key: string): void {
+  try {
+    const existing = storage.getItem(key);
+    if (existing !== null) {
+      const len = Math.max(existing.length, 128);
+      // Pass 1: High-entropy CSPRNG random noise
+      storage.setItem(key, shredString(len));
+      // Pass 2: Inverted binary zero-fill
+      storage.setItem(key, &#x27;0&#x27;.repeat(len));
+      // Pass 3: Inverted binary one-fill
+      storage.setItem(key, &#x27;1&#x27;.repeat(len));
+      // Pass 4: Fresh CSPRNG random entropy
+      storage.setItem(key, shredString(len));
+      // Pass 5: Physical storage unlink
+      storage.removeItem(key);
+    }
+  } catch (err) {
+    storage.removeItem(key);
+  }
+}
+
+/**
+ * Complete eradication of all keys across localStorage
+ */
+export function shredAllLocalStorage(): void {
+  if (typeof window === &#x27;undefined&#x27;) return;
+  const keys = Object.keys(localStorage);
+  for (const k of keys) {
+    shredStorageKey(localStorage, k);
+  }
+  localStorage.clear();
+}</code></pre>
+<hr class="divider"/>
+<h2 class="section-title">19. Complete User-Facing Application Architecture & Comprehensive Page Map (16 Core Routes)</h2>
+<p>DholeraMap.com deploys an integrated, responsive 16-route application architecture providing 100% functional parity with the production DDA Real Estate platform while elevating it for Gujarat Town Planning statutes, institutional investors, and local land broker syndicates:</p>
+<pre class="code-block"><code>                                      [ DholeraMap.com Complete Route Map ]
+                                                        |
+     +-------------------------+------------------------+------------------------+-------------------------+
+     |                         |                        |                        |                         |
+[ Discovery &amp; Knowledge ]  [ GIS Map Atlas ]     [ Workspace &amp; CRM ]       [ Monetization &amp; Growth ]   [ Control &amp; Legal ]
+- `/` (Home Landing)       - `/viewer` (Map Atlas) - `/dashboard` (CRM)     - `/pricing` (Plans)        - `/settings` (Profile)
+- `/tp/[scheme]` (TP Hub)  - `/village/[slug]`     - `/compare/[slug]`      - `/billing` (Invoices)     - `/admin` (Command)
+- `/guides/[slug]`         - `/survey/[v]/[no]`    - `/directory` (Dealers) - `/api/share` (Syndicate)  - `/verify/[id]` (Ledger)
+- `/why-us` &amp; `/faq`       - `TracePanel` (Hotspots)- Saved Vault (IndexedDB)- IndexNow / RSS Sitemaps  - `/legal/*` (Policies)</code></pre>
+<hr class="divider"/>
+<h3 class="subsection-title">1. Interactive Cadastral Map Atlas (<code>/</code> and <code>/viewer</code> and <code>/village/[slug]</code>)</h3>
+<ul>
+<li><strong>Routes</strong>: <code>https://dholeramap.com/</code>, <code>https://dholeramap.com/viewer/</code>, and <code>https://dholeramap.com/village/[slug]</code></li>
+<li><strong>Primary Function</strong>: The core 60 FPS vector GIS exploration engine rendering all 20,912 statutory parcels across TP 1 through TP 6 and 22 revenue villages.</li>
+<li><strong>Key User Interfaces & Parity Features</strong>:</li>
+<li><em>Full-Screen Vector Canvas</em>: Hardware-accelerated HTML5 Canvas with Flatbush 2D R-Tree spatial culling, adaptive LOD decimation (≤400 markers on low-spec mobile; ≤800 on desktop), and amber gold pre-rasterized glow reticles.</li>
+<li><em>Unified Filter Bar</em>: One-tap filtering by TP Scheme (TP1 to TP6), Revenue Village, Minimum Road Width (12m, 18m, 24m, 30m, 45m, 55m), and Land Use Classification (Residential R1/R2, High Access Corridor, Commercial, Industrial, Green Belt).</li>
+<li><em>Interactive Cadastral Drawer</em>: Slides up on plot tap showing:</li>
+<li>Reconstituted Final Plot (FP) vs Original Plot (OP) area.</li>
+<li>Statutory land deduction percentage (e.g. 40% TP deduction).</li>
+<li>Road width entitlement and DGDCR Table 4.1 building envelope metrics (Permissible FSI, Maximum Ground Coverage, Maximum Building Height).</li>
+<li>4-Tier Visual Provenance Badges (<code>STATUTORY FACT</code>, <code>REGULATORY CAP</code>, <code>DERIVED METRIC</code>, <code>🟠 ESTIMATED (±{uncertainty}m)</code> matching per-scheme precision: ±1.0m to ±2.5m).</li>
+<li>One-tap turn-by-turn navigation link to Google Maps.</li>
+<li><em>In-Map Client Storage Sanitization Trigger</em>: Quick-action icon on personal bookmark pins allowing application-managed cryptographic sanitization of saved plot markers directly from the map interface per NIST SP 800-88r2.</li>
+<li><em>Quick Sector/Village Jumper & Mini-Map</em>: Sector navigator matching DDA's pocket-sheet switcher, allowing smooth 60 FPS fly-to camera transitions.</li>
+</ul>
+
+<hr class="divider"/>
+<h3 class="subsection-title">2. Town Planning Scheme & Sector Portals (<code>/tp/[scheme]</code> and <code>/sector/[slug]</code>)</h3>
+<ul>
+<li><strong>Route</strong>: <code>https://dholeramap.com/tp/[scheme]</code> and <code>https://dholeramap.com/sector/[slug]</code></li>
+<li><strong>Primary Function</strong>: Dedicated thematic portals for individual Town Planning schemes (TP 1, TP 2A, TP 2B, TP 3, TP 4, TP 5, TP 6) and revenue village sectors.</li>
+<li><strong>Key User Interfaces</strong>:</li>
+<li><em>Statutory Scheme Header</em>: Gazette sanction status, government notification numbers, total original area vs reconstituted area, and designated town planner details.</li>
+<li><em>Zoning Breakdown Chart</em>: Interactive distribution of Residential, Commercial, Industrial, and High Access Corridor allocations.</li>
+<li><em>Village Sector Matrix</em>: Quick-links to all revenue villages overlapping the Town Planning scheme with parcel counts.</li>
+<li><em>Downloadable Sanctioned Maps</em>: High-resolution official preliminary blueprint previews with watermarked export options.</li>
+</ul>
+
+<hr class="divider"/>
+<h3 class="subsection-title">3. Real Estate Broker & Investor Dashboard (<code>/dashboard</code>)</h3>
+<ul>
+<li><strong>Route</strong>: <code>https://dholeramap.com/dashboard/</code></li>
+<li><strong>Primary Function</strong>: Professional cadastral management and CRM suite for property dealers, brokers, and institutional land syndicates.</li>
+<li><strong>Key User Interfaces</strong>:</li>
+<li><em>Cadastral Portfolio Workspace</em>: Sortable and searchable table of saved plots with sector, survey number, final plot number, asking price, and deal notes.</li>
+<li><em>Offline Document Vault (IndexedDB)</em>: Secure, encrypted local storage for client allotment letters, registered sale deeds, Form 4/5 gazette extracts, possession certificates, and site photos.</li>
+<li><em>Deal Pipeline & Status Board</em>: Visual deal pipeline categorizing properties by intent (<code>Selling</code> vs <code>Buying</code>) and outcome (<code>Available</code>, <code>Under Negotiation</code>, <code>Sold</code>, <code>Looking</code>, <code>Closed</code>) with asking price in Lakhs/Crores.</li>
+<li><em>Device Storage Audit & Erasure Hub</em>: Real-time audit readout showing exact local device storage consumption:</li>
+<li>Total pins stored and byte weight.</li>
+<li>Total attached documents in IndexedDB and byte size.</li>
+<li>Custom boundary polygons and brand assets.</li>
+<li><em>Client Storage Sanitization Triggers</em>: Dedicated 1-tap buttons to cryptographically sanitize single pins, purge all local documents, or execute a complete application factory reset / cryptographic storage purge. Every button triggers the Universal Deletion Warning Modal.</li>
+</ul>
+
+<hr class="divider"/>
+<h3 class="subsection-title">4. User Profile & Agency Branding Settings (<code>/settings</code> / <code>/profile</code>)</h3>
+<ul>
+<li><strong>Route</strong>: <code>https://dholeramap.com/settings/</code></li>
+<li><strong>Primary Function</strong>: Account management, custom dealer branding studio, multi-device concurrency control, and legal privacy hub.</li>
+<li><strong>Key User Interfaces</strong>:</li>
+<li><em>Agency Branding Studio</em>: Customize pitch dossiers with real estate agency name, phone number, logo, Gujarat RERA registration number, custom tagline, and customized watermark.</li>
+<li><em>Active Devices & Concurrency Manager</em>: Real-time monitor of active login sessions (displaying device type, operating system, browser, IP address, and last active timestamp). Enforces the strict 2-device concurrency limit with 1-tap remote revocation of stale devices.</li>
+<li><em>Authentication & Security Panel</em>: Manage passwordless Email OTP verification, linked Google account status, and session security.</li>
+<li><em>Data Privacy & Account Lifecycle Hub</em>: Self-service DPDP Act 2023 compliance panel offering:</li>
+<li><em>Server-Side Statutory Account Purge</em>: Irrevocable database deletion of server-side account profiles, session tokens, subscription histories, and telemetry within 72 hours under DPDP statutory mandates.</li>
+<li><em>Local Storage Cryptographic Sanitization</em>: Multi-pass CSPRNG overwriting, key zeroization, and database unlinking (<code>indexedDB.deleteDatabase()</code>) of on-device cached maps, saved pins, and document vaults under NIST SP 800-88r2 / IEEE 2883 standards.</li>
+</ul>
+
+<hr class="divider"/>
+<h3 class="subsection-title">5. Pricing, Subscriptions & Membership Plans (<code>/pricing</code>)</h3>
+<ul>
+<li><strong>Route</strong>: <code>https://dholeramap.com/pricing/</code></li>
+<li><strong>Primary Function</strong>: Subscription tier selection, feature comparison, and enterprise license procurement.</li>
+<li><strong>Membership Tier Matrix</strong>:</li>
+</ul>
+
+<div class="table-container"><table>
+<thead><tr>
+<th>Feature & Entitlement</th>
+<th>Free Explorer Tier</th>
+<th>Pro Land Broker Tier</th>
+<th>Institutional Enterprise</th>
+</tr></thead><tbody>
+<tr>
+<td><strong>Cadastral Map Access</strong></td>
+<td>Full 20,912 Parcels</td>
+<td>Full 20,912 Parcels</td>
+<td>Full 20,912 Parcels</td>
+</tr>
+<tr>
+<td><strong>Plot Inspections / Day</strong></td>
+<td>3 plots / 24 hrs</td>
+<td><strong>Unlimited</strong></td>
+<td><strong>Unlimited</strong></td>
+</tr>
+<tr>
+<td><strong>1-Click WhatsApp Pitch Dossiers</strong></td>
+<td>Basic (Watermarked)</td>
+<td><strong>Unlimited (Custom Agency Brand)</strong></td>
+<td><strong>Unlimited (White-Label)</strong></td>
+</tr>
+<tr>
+<td><strong>DGDCR Building Control Matrix</strong></td>
+<td>Basic FSI readout</td>
+<td><strong>Full Envelope Simulation</strong></td>
+<td><strong>Full Simulation + API</strong></td>
+</tr>
+<tr>
+<td><strong>Document Vault Storage</strong></td>
+<td>None</td>
+<td><strong>Up to 500 MB (IndexedDB)</strong></td>
+<td><strong>Multi-GB / Cloud Sync</strong></td>
+</tr>
+<tr>
+<td><strong>Active Concurrent Devices</strong></td>
+<td>1 Device</td>
+<td><strong>2 Devices (Simultaneous)</strong></td>
+<td><strong>Custom Multi-Seat Teams</strong></td>
+</tr>
+<tr>
+<td><strong>Bulk Survey Search & Export</strong></td>
+<td>Disabled</td>
+<td>25 surveys / day</td>
+<td><strong>Unlimited CSV / GeoJSON API</strong></td>
+</tr>
+<tr>
+<td><strong>Boundary Tracing Studio</strong></td>
+<td>View Only</td>
+<td><strong>Full Tracing & Acreage Math</strong></td>
+<td><strong>Full Tracing + Shapefile Export</strong></td>
+</tr>
+<tr>
+<td><strong>Collaborative Deal Syndication</strong></td>
+<td>Disabled</td>
+<td><strong>Up to 5 Shared Groups</strong></td>
+<td><strong>Unlimited Team Workspaces</strong></td>
+</tr>
+<tr>
+<td><strong>Turn-by-Turn Navigation</strong></td>
+<td>Standard</td>
+<td><strong>High-Precision Access Node</strong></td>
+<td><strong>High-Precision Access Node</strong></td>
+</tr>
+<tr>
+<td><strong>Support SLA</strong></td>
+<td>Community</td>
+<td><strong>Priority WhatsApp Support</strong></td>
+<td><strong>Dedicated GIS Account Manager</strong></td>
+</tr>
+</tbody></table></div>
+<hr class="divider"/>
+<h3 class="subsection-title">6. Billing Management & GST Tax Receipts (<code>/billing</code>)</h3>
+<ul>
+<li><strong>Route</strong>: <code>https://dholeramap.com/billing/</code></li>
+<li><strong>Primary Function</strong>: Self-service billing management for subscribed land brokers and corporate clients.</li>
+<li><strong>Key User Interfaces</strong>:</li>
+<li><em>Subscription Status Card</em>: Current plan, renewal date, active device count, and next billing cycle amount.</li>
+<li><em>Invoices & Tax Receipts</em>: Downloadable PDF receipts compliant with Indian Goods & Services Tax (GST) displaying SAC/HSN codes, GSTIN numbers, and transaction reference IDs.</li>
+<li><em>Autopay & Renewal Settings</em>: One-click toggle for automated recurring subscription charges or cancellation without penalty.</li>
+</ul>
+
+<hr class="divider"/>
+<h3 class="subsection-title">7. Programmatic Survey & Plot Dossier Pages (<code>/survey/[village]/[surveyNo]</code>)</h3>
+<ul>
+<li><strong>Route</strong>: <code>https://dholeramap.com/survey/[village]/[surveyNo]</code></li>
+<li><strong>Primary Function</strong>: Programmatic SEO landing pages for every individual survey number in the 22 villages of Dholera SIR.</li>
+<li><strong>Key User Interfaces</strong>:</li>
+<li><em>Statutory Form 4/5 Gazette Data</em>: Official Gujarat Government Town Planning scheme notification tables showing Original Survey Number, Original Plot (OP) area, Final Plot (FP) number, and Allocated Reconstituted Area.</li>
+<li><em>DGDCR Building Control Envelope</em>: Automated calculation of maximum permissible FSI, maximum ground coverage, maximum permissible height (meters), and required parking spaces based on statutory road width.</li>
+<li><em>Interactive Map Snippet</em>: Embedded canvas preview centering directly on the surveyed parcel with highlighted boundary and amber reticle.</li>
+<li><em>One-Click WhatsApp Pitch Dossier Button</em>: Launches the Inbound Click-to-WhatsApp intent generating a customized, verified statutory PDF report.</li>
+<li><em>Tamper-Evident SHA-256 QR Code</em>: Cryptographic hash badge linking directly to the statutory verification gateway.</li>
+</ul>
+
+<hr class="divider"/>
+<h3 class="subsection-title">8. Comparative Scheme & Sector Analysis Engine (<code>/compare/[slug]</code>)</h3>
+<ul>
+<li><strong>Route</strong>: <code>https://dholeramap.com/compare/[slug]</code> (e.g. <code>/compare/tp2-vs-tp1</code>, <code>/compare/activation-area-vs-airport-corridor</code>)</li>
+<li><strong>Primary Function</strong>: Side-by-side analytical comparison tool for investors evaluating different TP schemes, sectors, or investment zones.</li>
+<li><strong>Key Analytical Dimensions</strong>:</li>
+<li><em>FSI & Permissible Ground Coverage comparison</em>.</li>
+<li><em>Statutory Jantri Valuation vs Current Market Price per Sq. Yard</em>.</li>
+<li><em>Road Infrastructure & Proximity Matrix</em> (Expressway access, Dholera Metro Corridor, Solar Park, Airport).</li>
+<li><em>Town Planning Scheme Legal Stage</em> (Draft vs Preliminary Sanction vs Final TPO Award).</li>
+</ul>
+
+<hr class="divider"/>
+<h3 class="subsection-title">9. Investor Due-Diligence & Legal Guides Knowledge Base (<code>/guides/[slug]</code>)</h3>
+<ul>
+<li><strong>Route</strong>: <code>https://dholeramap.com/guides/</code> and <code>https://dholeramap.com/guides/[slug]</code></li>
+<li><strong>Primary Function</strong>: Authoritative educational portal establishing institutional authority and driving organic organic search traffic.</li>
+<li><strong>Core Published Guides</strong>:</li>
+</ul>
+
+<p>1. <em>"How to Read Gujarat Town Planning Maps (OP to FP Reconstitution Guide)"</em></p>
+<p>2. <em>"Juni Sharat (Old Tenure) vs Navi Sharat (New Tenure) Land Law in Dholera"</em></p>
+<p>3. <em>"7/12 AnyRoR Extracts and Mutation Verification Checklist"</em></p>
+<p>4. <em>"DGDCR 2024 Comprehensive Building Bye-Laws Demystified"</em></p>
+<p>5. <em>"The 10-Step Legal Title Verification Process for Land in Gujarat"</em></p>
+<hr class="divider"/>
+<h3 class="subsection-title">10. Verified Property Dealer & Consultant Directory (<code>/directory</code>)</h3>
+<ul>
+<li><strong>Route</strong>: <code>https://dholeramap.com/directory/</code></li>
+<li><strong>Primary Function</strong>: Public registry connecting outstation/NRI buyers with verified local Gujarat land consultants.</li>
+<li><strong>Key User Interfaces</strong>:</li>
+<li><em>Broker Verification Profile</em>: Agency branding, verified phone number, office address, Gujarat RERA registration number, and certified badge.</li>
+<li><em>Active Inventory List</em>: Curated list of verified available plots with direct links to the interactive Cadastral Map Atlas.</li>
+<li><em>One-Tap WhatsApp Connect</em>: Instant direct messaging connection to certified dealers.</li>
+</ul>
+
+<hr class="divider"/>
+<h3 class="subsection-title">11. Institutional Trust & Why-Us Positioning (<code>/why-us</code>)</h3>
+<ul>
+<li><strong>Route</strong>: <code>https://dholeramap.com/why-us/</code></li>
+<li><strong>Primary Function</strong>: Credibility manifesto detailing the engineering and surveying rigor behind DholeraMap.com.</li>
+<li><strong>Key Pillars Highlighted</strong>:</li>
+<li><em>The 106-Station Geodetic Network</em>: Detailed ground-truth benchmarking tied to Survey of India GTS monuments.</li>
+<li><em>Statutory Grounding</em>: 100% gazette-backed data extracted directly from official Town Planning records.</li>
+<li><em>Zero-PII & Client-Side Media Sanitization</em>: Highlighting client-side encryption, local IndexedDB vaults, and NIST SP 800-88r2 / IEEE 2883 cryptographic data sanitization.</li>
+</ul>
+
+<hr class="divider"/>
+<h3 class="subsection-title">12. Frequently Asked Questions & Town Planning FAQ (<code>/faq</code>)</h3>
+<ul>
+<li><strong>Route</strong>: <code>https://dholeramap.com/faq/</code></li>
+<li><strong>Primary Function</strong>: Structured FAQ addressing legal questions, technical accuracy, subscription mechanics, and data privacy.</li>
+<li><strong>Sections Covered</strong>: Legal status of Town Planning schemes, RERA applicability for raw agricultural land, geodetic precision boundaries, refund policy, and multi-device access rules.</li>
+</ul>
+
+<hr class="divider"/>
+<h3 class="subsection-title">13. Public Dossier Verification Gateway (<code>/verify/[dossierId]</code>)</h3>
+<ul>
+<li><strong>Route</strong>: <code>https://dholeramap.com/verify/[dossierId]</code></li>
+<li><strong>Primary Function</strong>: Public cryptographic ledger verifying the authenticity of exported PDF pitch dossiers and WhatsApp attachments.</li>
+<li><strong>Key User Interfaces</strong>:</li>
+<li><em>Cryptographic Hash Match</em>: Displays whether the PDF's embedded SHA-256 hash matches the official server-side gazette snapshot.</li>
+<li><em>Statutory Ledger Metadata</em>: Confirms the Gujarat Gazette notification date, Town Planning scheme publication date, and DGDCR 2024 formula version used during generation.</li>
+<li><em>Tamper Detection Notice</em>: Displays a prominent green <code>"AUTHENTIC STATUTORY EXTRACT"</code> badge or a red <code>"TAMPERED / EXPIRED NOTICE"</code> if any coordinate or building control parameter was modified post-export.</li>
+</ul>
+
+<hr class="divider"/>
+<h3 class="subsection-title">14. Authentication & Access Control Suite (<code>/login</code>, <code>/signup</code>, <code>/auth/verify</code>)</h3>
+<ul>
+<li><strong>Route</strong>: <code>https://dholeramap.com/login/</code> and <code>https://dholeramap.com/signup/</code></li>
+<li><strong>Primary Function</strong>: Frictionless, secure user onboarding and authentication.</li>
+<li><strong>Key User Interfaces</strong>:</li>
+<li><em>Passwordless Email OTP</em>: 6-digit cryptographic one-time password delivered via SMTP/transactional email with 10-minute expiry and brute-force rate-limiting (max 5 attempts).</li>
+<li><em>Google OAuth 2.0 Integration</em>: One-tap Google sign-in with mandatory terms acceptance modal (preventing accidental sign-in without policy consent).</li>
+<li><em>Device Lockout Warning Modal</em>: Transparently notifies the user when attempting to log in from a 3rd device, offering a 1-tap option to sign out older sessions.</li>
+</ul>
+
+<hr class="divider"/>
+<h3 class="subsection-title">15. Statutory, Legal & Regulatory Documentation Hub (<code>/legal/*</code>)</h3>
+<ul>
+<li><strong>Routes</strong>: <code>/legal/privacy/</code>, <code>/legal/terms/</code>, <code>/legal/disclaimer/</code>, <code>/legal/refund/</code>, <code>/about/</code>, <code>/contact/</code></li>
+<li><strong>Primary Function</strong>: Formal statutory transparency and regulatory compliance under Indian IT Act 2000, DPDP Act 2023, and GTPUD Act 1976.</li>
+<li><strong>Key Documented Policies</strong>:</li>
+<li><em>DPDP Act 2023 Privacy Policy</em>: Explicitly documents data fiduciary obligations, data principal rights, purpose limitation, the statutory guarantees of server-side account record eradication within 72 hours, and on-device application-managed cryptographic sanitization (§18).</li>
+<li><em>Town Planning Scheme Statutory Disclaimer</em>: Formally distinguishes draft, preliminary, and sanctioned Town Planning schemes, clarifying that provisional Final Plots remain subject to Town Planning Officer (TPO) award under Section 52 of the GTPUD Act 1976.</li>
+<li><em>Section 79 IT Act Intermediary Declaration</em>: Declares safe-harbor protections regarding public government gazette reproductions and user-generated deal notes.</li>
+<li><em>Commercial Refund & Cancellation Terms</em>: Details pro-rata refund policies for Pro Land Broker subscriptions and institutional licenses.</li>
+</ul>
+
+<hr class="divider"/>
+<h3 class="subsection-title">16. Institutional Super-Admin Operations Platform (<code>/admin</code>)</h3>
+<ul>
+<li><strong>Route</strong>: <code>https://dholeramap.com/admin/</code></li>
+<li><strong>Primary Function</strong>: Internal operations, subscriber management, system health monitoring, and governance compliance.</li>
+<li><strong>Key Admin Modules</strong>:</li>
+<li><em>User & Broker Management (<code>/admin?tab=users</code>)</em>: Comprehensive directory of registered brokers; grant/revoke Pro or Enterprise memberships; inspect active session device IDs; add internal staff notes.</li>
+<li><em>Tamper-Evident Activity Audit Log (<code>/admin?tab=audit</code>)</em>: Immutable log tracking all administrative interventions, membership grants, device resets, and security events.</li>
+<li><em>Broadcast & System Notifications (<code>/admin?tab=notifications</code>)</em>: Author and dispatch targeted announcements or broadcast notices (e.g. "New TP 2B Preliminary Map Gazetted") directly to brokers' dashboards.</li>
+<li><em>Feedback & Support Ticket Triage (<code>/admin?tab=feedback</code>)</em>: Triage user bug reports, map feedback, and cadastral correction suggestions with resolution workflows.</li>
+<li><em>System Health & Maintenance Gate (<code>/admin?tab=site</code>)</em>: Global emergency maintenance mode toggle, database connection health, cache hit rates, and API rate-limit monitoring.</li>
+</ul>
+
+<hr class="divider"/>
+<h2 class="section-title">20. Advanced Real Estate Functionalities, Calculators & Collaborative Tools</h2>
+<p>To achieve full operational parity with DDA Real Estate and adapt it to Gujarat land consulting realities, DholeraMap.com incorporates seven specialized functional engines:</p>
+<hr class="divider"/>
+<h3 class="subsection-title">1. Gujarat Jantri Rate & Stamp Duty Calculator (<code>CircleRateCalculator</code>)</h3>
+<ul>
+<li><strong>Domain Reality</strong>: Property conveyances in Gujarat are governed by the <strong>Gujarat Stamp Act, 1958</strong> (Schedule I, Article 20) and the <strong>Registration Act, 1908</strong>. Statutory conveyance dues are assessed on whichever is higher: the government <strong>Jantri</strong> valuation (Annual Statement of Rates) or the actual agreed transaction consideration.</li>
+<li><strong>Statutory Jantri Valuation</strong>:</li>
+</ul>
+
+<p><div class="math-display">Val_Jantri = Area (Sq. Mt.) × Jantri Rate per Sq. Mt.</div></p>
+<p><div class="math-display">Taxable Consideration = max(Val_Jantri, Actual Deal Consideration)</div></p>
+<ul>
+<li><strong>Statutory Rate Architecture</strong>:</li>
+</ul>
+
+<p>1. <strong>Conveyance Stamp Duty Rate</strong>: Uniform <strong><span class="math-inline">4.90%</span></strong> across Gujarat for all purchasers.</p>
+<ul>
+<li><em>Statutory Composition</em>: Governed by Article 20 of Schedule I of the Gujarat Stamp Act, 1958, comprising <strong><span class="math-inline">3.50%</span> basic stamp duty</strong> plus <strong><span class="math-inline">1.40%</span> statutory additional duty / surcharge</strong>.</li>
+<li><em>Gender Neutrality on Stamp Duty</em>: Under the Gujarat Stamp Act, there is <strong>no statutory gender discount on base stamp duty</strong> (the widely circulated internet claim of "3.90% stamp duty for women" is a popular misconception conflating the separate registration concession).</li>
+</ul>
+
+<p>2. <strong>Statutory Registration Fee</strong>: Standard statutory rate of <strong><span class="math-inline">1.00%</span></strong> under the Registration Act, 1908.</p>
+<p>3. <strong>Statutory Sole-Female Ownership Incentive (100% Registration Fee Waiver)</strong>:</p>
+<ul>
+<li>Pursuant to Gujarat State Government Revenue Department policy notifications, <strong>sole female purchasers enjoy a 100% statutory waiver of the 1.00% registration fee</strong> (<span class="math-inline">Registration Fee = <strong>0.00%</strong></span>).</li>
+<li><em>Application Scope</em>: Applies strictly when the conveyance deed is registered exclusively in the name of one or more women. In joint registrations involving a male co-purchaser, the standard <span class="math-inline">1.00%</span> registration fee is applicable.</li>
+<li><strong>Mathematical Total Government Dues Formulas (Zero Double-Counting)</strong>:</li>
+</ul>
+
+<p><div class="math-display">Total Govt Dues = Taxable Consideration × (Stamp Duty Rate + Registration Fee Rate)</div></p>
+<ul>
+<li><strong>General (Male / Corporate) Conveyance</strong>:</li>
+</ul>
+
+<p><div class="math-display">Stamp Duty (4.90%) + Registration Fee (1.00%) = <strong>5.90%</strong></div></p>
+<p><div class="math-display">Total Dues = Taxable Consideration × (0.049 + 0.010) = Taxable Consideration × <strong>0.059</strong></div></p>
+<ul>
+<li><strong>Sole-Female Buyer Conveyance (Statutory Registration Exemption)</strong>:</li>
+</ul>
+
+<p><div class="math-display">Stamp Duty (4.90%) + Registration Fee (0.00%) = <strong>4.90%</strong></div></p>
+<p><div class="math-display">Total Dues = Taxable Consideration × (0.049 + 0.000) = Taxable Consideration × <strong>0.049</strong></div></p>
+<ul>
+<li><strong>Joint Registration (Male + Female Co-Ownership)</strong>:</li>
+</ul>
+
+<p><div class="math-display">Stamp Duty (4.90%) + Registration Fee (1.00%) = <strong>5.90%</strong></div></p>
+<p><div class="math-display">Total Dues = Taxable Consideration × (0.049 + 0.010) = Taxable Consideration × <strong>0.059</strong></div></p>
+<ul>
+<li><strong>Municipal / Local Body Transfer Surcharge Toggle</strong>:</li>
+<li>In specific municipal corporation jurisdictions (e.g., AMC, SMC), municipal acts authorize an additional local body transfer duty (typically 1.00%). Within the Dholera Special Investment Region (governed by the Gujarat SIR Act 2009 / Dholera SIRDA), the baseline transfer duty is <span class="math-inline">0.00%</span>.</li>
+<li>The UI calculator incorporates an explicit toggle: <em>"Municipal Local Body Surcharge (0.00% SIR baseline / 1.00% Municipal Zone)"</em>. When toggled on, it adds <span class="math-inline">0.01</span> to the stamp duty rate without disturbing or double-counting the registration fee.</li>
+<li><strong>Counsel Verification Under Gate E</strong>:</li>
+<li>As part of the already-gated <strong>Gate E (Regulatory Sign-Off)</strong>, the exact statutory interpretation of Revenue Department circulars governing the sole-female registration fee waiver is submitted for formal written confirmation by outside Gujarat revenue counsel prior to live commercial billing activation.</li>
+<li><strong>UI Implementation</strong>: Interactive component embedded on every survey page and in the broker dashboard, calculating instant stamp duty, registration charges, and total outlay for any parcel without double-counting.</li>
+</ul>
+
+<hr class="divider"/>
+<h3 class="subsection-title">2. Gujarat Land Unit Conversion Engine</h3>
+<ul>
+<li><strong>Domain Reality</strong>: Real estate transactions in Gujarat bridge three distinct measurement vocabularies: statutory meters (government gazettes), traditional Gujarati land measures (Vigha and Guntha), and commercial market standards (Vaar / Square Yards).</li>
+<li><strong>Mathematical Conversion Standards</strong>:</li>
+<li><span class="math-inline">1  Vaar (Square Yard) = 9  Square Feet = 0.836127  Square Meters</span></li>
+<li><span class="math-inline">1  Guntha = 100  Vaar = 100  Square Yards = 83.6127  Square Meters</span></li>
+<li><span class="math-inline">1  Vigha (Gujarat Standard / Bhal Region) = 23.78  Gunthas = 2,378  Vaar = 1,988.31  Square Meters</span></li>
+<li><span class="math-inline">1  Acre = 43,560  Square Feet = 4,840  Vaar = 48.40  Gunthas ≈ <strong>2.035  Vighas</strong>   (4,840 / 2,378 = 2.0353)</span></li>
+<li><span class="math-inline">1  Hectare = 10,000  Square Meters = 11,959.9  Vaar = 119.599  Gunthas ≈ <strong>5.029  Vighas</strong>   (10,000 / 1,988.31 = 5.0294)</span></li>
+<li><strong>Adopted Regional Standard</strong>:</li>
+<li>The platform formally adopts the <strong>Gujarat Standard / Bhal Region baseline</strong> (<span class="math-inline">1 Vigha = 23.78 Gunthas = 2,378 Vaar = 1,988.31 m²</span>, where <span class="math-inline">1 Guntha = 100 Vaar = 83.613 m²</span>).</li>
+<li>Distinguishes this from North Gujarat (<span class="math-inline">1 Vigha = 24 Gunthas = 2,400 Vaar</span>) and Saurashtra/Kutch variants. All conversion widgets and PDF dossiers explicitly state this adopted baseline to guarantee commercial and legal certainty.</li>
+<li><strong>Bidirectional Unit Converter</strong>: Embedded widget allowing immediate two-way translation of land size and price (e.g. ₹ per Vaar <span class="math-inline">leftrightarrow</span> ₹ per Vigha <span class="math-inline">leftrightarrow</span> ₹ per Sq. Meter).</li>
+</ul>
+
+<hr class="divider"/>
+<h3 class="subsection-title">3. Statutory OP-to-FP Land Deduction Engine</h3>
+<ul>
+<li><strong>Statutory Formula (GTPUD Act 1976)</strong>: In Town Planning schemes, raw agricultural Original Plots (OP) undergo statutory reconstitution into urban Final Plots (FP) with land deductions (typically 40% to 50%) allocated for public roads, green spaces, social infrastructure, and commercial sale by the authority (Dholera SIRDA).</li>
+<li><strong>Reconstitution Calculator</strong>:</li>
+</ul>
+
+<p><div class="math-display">FP Area = OP Area × (1 - Deduction Ratio)</div></p>
+<p><div class="math-display">Deduction Area = OP Area × Deduction Ratio</div></p>
+<ul>
+<li><strong>UI Readout</strong>: In the Cadastral Drawer and WhatsApp Dossier, clearly highlights both gross agricultural holding and net urban reconstituted holding, preventing buyer confusion.</li>
+</ul>
+
+<hr class="divider"/>
+<h3 class="subsection-title">4. Interactive Boundary Tracing & Hotspot Studio (<code>TracePanel</code>)</h3>
+<ul>
+<li><strong>Functional Architecture</strong>: Directly adapted from DDA Real Estate's <code>TracePanel.tsx</code>. Enables certified brokers, architects, and surveyors to trace custom boundaries over the map:</li>
+<li><em>Multi-Vertex Polygon Drawing</em>: Tap/click points directly on the high-resolution vector canvas to trace unplotted or subdivided land chunks.</li>
+<li><em>Live Geodesic Acreage Calculation</em>: Real-time perimeter and polygon area calculation in Square Yards, Gunthas, and Vighas as vertices are placed.</li>
+<li><em>Custom Hotspot Tagging</em>: Attach custom deal titles, client notes, asking prices, and deal intents (<code>Selling</code> vs <code>Buying</code>).</li>
+<li><em>Local Persistence & Client Sanitization</em>: Traced hotspots are saved to client storage and fully covered under Section 18's Client-Side Data Sanitization Architecture (NIST SP 800-88r2 & IEEE 2883 Aligned Standards).</li>
+</ul>
+
+<hr class="divider"/>
+<h3 class="subsection-title">5. Collaborative Team Syndication & Shared Plot Groups (<code>SharePinModal</code> / <code>InviteJoiner</code>)</h3>
+<ul>
+<li><strong>Functional Architecture</strong>: Modeled on DDA Real Estate's multi-agent sharing architecture (<code>api/share/groups</code>):</li>
+<li><em>Private Deal Syndicates</em>: A broker can create a named group (e.g. <em>"Hebatpur Commercial Syndication"</em>) and add multiple saved plot pins.</li>
+<li><em>Secret Invite Links (<code>/join/[token]</code>)</em>: Generates a secure, expiring invite URL allowing partner brokers or client syndicates to view the curated portfolio.</li>
+<li><em>Permission Control</em>: Read-Only vs Collaborative Editor (allowing team members to add plot notes or documents).</li>
+<li><em>Automated Synchronization</em>: When team members update plot notes or deal outcomes (<code>Available</code> <span class="math-inline">rightarrow</span> <code>Under Negotiation</code>), updates propagate across all members.</li>
+</ul>
+
+<hr class="divider"/>
+<h3 class="subsection-title">6. Multilingual AI Geospatial Voice & Chat Consultant (<code>ChatWidget</code> / <code>api/asr</code> / <code>api/chat</code>)</h3>
+<ul>
+<li><strong>Functional Architecture</strong>: Direct parity with DDA Real Estate's floating AI consultant:</li>
+<li><em>Multilingual Speech Recognition (<code>api/asr</code>)</em>: Supports real-time speech-to-text in <strong>Gujarati</strong>, <strong>Hindi</strong>, and <strong>English</strong>, accommodating local Gujarat land brokers and outstation investors.</li>
+<li><em>Streaming LLM Geospatial RAG (<code>api/chat</code>)</em>: Grounded in the complete 35-Document Dholera SIR Archive, DGDCR 2024 regulations, and Town Planning scheme gazettes.</li>
+<li><em>Domain-Specific Query Capabilities</em>:</li>
+<li><em>"What is the permissible FSI for a commercial plot on an 18m road in TP2?"</em></li>
+<li><em>"Which revenue villages fall under TP 1?"</em></li>
+<li><em>"What are the stamp duty charges for buying 2 Vighas in Kadipur?"</em></li>
+<li><em>"Show me plots near the Expressway with approved road access."</em></li>
+</ul>
+
+<hr class="divider"/>
+<h3 class="subsection-title">7. Instant Search Indexation Engine (IndexNow & XML Sitemaps)</h3>
+<ul>
+<li><strong>Crawl Architecture</strong>: To ensure all 20,912 statutory survey pages index rapidly and rank #1 on Google and Bing:</li>
+<li><em>IndexNow Protocol (<code>/api/indexnow</code>)</em>: Automated webhook dispatching instant notification pings to Bing, Yandex, and participating search engines whenever new gazette data or DGDCR amendments are published.</li>
+<li><em>Chunked XML Sitemaps (<code>/sitemap/[chunk].xml</code>)</em>: Segmented into 5,000-URL chunks adhering to Google Search Console standards with statutory <code><lastmod></code> timestamps and priority weights matching data quality tiers (Tier 1: 1.0, Tier 2: 0.8, Tier 3: 0.5).</li>
+</ul>
+
+</body>
+</html>

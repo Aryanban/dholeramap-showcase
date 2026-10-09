@@ -1,0 +1,55 @@
+/* --------------------------------------------------------------- article prose
+   Self-contained typography for MDX blog article bodies (no Tailwind
+   typography plugin dependency). Scoped to .article-prose only. */
+.article-prose {
+  font-size: 1.0625rem;
+  line-height: 1.75;
+  color: rgb(51 65 85);
+  word-wrap: break-word;
+}
+.article-prose > *:first-child { margin-top: 0; }
+.article-prose > *:last-child { margin-bottom: 0; }
+.article-prose p { margin: 1.15em 0; }
+.article-prose h2 {
+  font-size: 1.5rem; font-weight: 800; letter-spacing: -0.01em;
+  color: rgb(15 23 42); margin: 1.9em 0 0.7em; line-height: 1.25;
+}
+.article-prose h3 {
+  font-size: 1.2rem; font-weight: 700; color: rgb(15 23 42);
+  margin: 1.6em 0 0.6em;
+}
+.article-prose ul { margin: 1.15em 0; padding-left: 1.4em; list-style: disc; }
+.article-prose ol { margin: 1.15em 0; padding-left: 1.5em; list-style: decimal; }
+.article-prose li { margin: 0.45em 0; }
+.article-prose li::marker { color: rgb(37 99 235); }
+.article-prose a { color: rgb(37 99 235); font-weight: 600; text-decoration: underline;
+  text-underline-offset: 2px; }
+.article-prose a:hover { color: rgb(29 78 216); }
+.article-prose strong { font-weight: 700; color: rgb(15 23 42); }
+.article-prose blockquote {
+  border-left: 3px solid rgb(37 99 235); background: rgb(239 246 255);
+  padding: 0.8em 1.1em; margin: 1.4em 0; border-radius: 0 8px 8px 0;
+  color: rgb(30 58 138); font-style: italic;
+}
+.article-prose code {
+  font-size: 0.875em; background: rgb(241 245 249); color: rgb(190 24 93);
+  padding: 0.15em 0.4em; border-radius: 6px; font-weight: 600;
+}
+.article-prose pre {
+  background: rgb(15 23 42); color: rgb(226 232 240); border-radius: 10px;
+  padding: 1em 1.2em; overflow-x: auto; margin: 1.4em 0; font-size: 0.875em;
+  line-height: 1.6;
+}
+.article-prose pre code { background: transparent; color: inherit; padding: 0; }
+.article-prose table {
+  width: 100%; border-collapse: collapse; margin: 1.4em 0; font-size: 0.9em;
+  display: block; overflow-x: auto;
+}
+.article-prose th {
+  text-align: left; font-weight: 700; color: rgb(15 23 42);
+  background: rgb(248 250 252); padding: 0.6em 0.75em; border-bottom: 2px solid rgb(226 232 240);
+  white-space: nowrap;
+}
+.article-prose td { padding: 0.6em 0.75em; border-bottom: 1px solid rgb(226 232 240); }
+.article-prose img { max-width: 100%; border-radius: 10px; margin: 1.4em 0; }
+.article-prose hr { border: 0; border-top: 1px solid rgb(226 232 240); margin: 2em 0; }

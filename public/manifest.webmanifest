@@ -1,0 +1,24 @@
+{
+  "name": "DholeraMap",
+  "short_name": "DholeraMap",
+  "description": "Interactive Dholera SIR GIS atlas — search 18,161 survey numbers, TP schemes and DGDCR zoning.",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#ece9e2",
+  "theme_color": "#2563eb",
+  "lang": "en",
+  "icons": [
+    {
+      "src": "/icon-192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "/icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any maskable"
+    }
+  ]
+}

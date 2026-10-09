@@ -1,0 +1,339 @@
+{
+  "ambli": [
+    {
+      "surveyNo": "1",
+      "finalPlot": "FP-1",
+      "schemeId": "dholera_tp1",
+      "subSector": "TP 1A-1 (Ambli Sector)",
+      "roadWidthM": 55,
+      "area": 7033.5
+    },
+    {
+      "surveyNo": "2",
+      "finalPlot": "",
+      "schemeId": "dholera_tp1",
+      "subSector": "TP 1A-1 (Ambli Sector)",
+      "roadWidthM": 55,
+      "area": 5030.7
+    },
+    {
+      "surveyNo": "3",
+      "finalPlot": "",
+      "schemeId": "dholera_tp1",
+      "subSector": "TP 1A-1 (Ambli Sector)",
+      "roadWidthM": 18,
+      "area": 6834.5
+    }
+  ],
+  "kadipur": [
+    {
+      "surveyNo": "11",
+      "finalPlot": "FP-781",
+      "schemeId": "dholera_tp1",
+      "subSector": "TP 1A-2 (Kadipur / Bhadiyad Sector)",
+      "roadWidthM": 18,
+      "area": 14208.3
+    },
+    {
+      "surveyNo": "12",
+      "finalPlot": "",
+      "schemeId": "dholera_tp1",
+      "subSector": "TP 1A-2 (Kadipur / Bhadiyad Sector)",
+      "roadWidthM": 18,
+      "area": 10647.7
+    },
+    {
+      "surveyNo": "13",
+      "finalPlot": "FP-783",
+      "schemeId": "dholera_tp1",
+      "subSector": "TP 1A-2 (Kadipur / Bhadiyad Sector)",
+      "roadWidthM": 18,
+      "area": 6924.9
+    }
+  ],
+  "bhimtalav": [
+    {
+      "surveyNo": "2",
+      "finalPlot": "",
+      "schemeId": "dholera_tp1",
+      "subSector": "TP 1A-3 (Bhimtalav / Valinda Sector)",
+      "roadWidthM": 12,
+      "area": 5030.7
+    },
+    {
+      "surveyNo": "8",
+      "finalPlot": "FP-778/A",
+      "schemeId": "dholera_tp1",
+      "subSector": "TP 1A-3 (Bhimtalav / Valinda Sector)",
+      "roadWidthM": 18,
+      "area": 18577.3
+    },
+    {
+      "surveyNo": "9",
+      "finalPlot": "FP-779",
+      "schemeId": "dholera_tp1",
+      "subSector": "TP 1A-3 (Bhimtalav / Valinda Sector)",
+      "roadWidthM": 18,
+      "area": 15779.3
+    }
+  ],
+  "bhadiyad": [
+    {
+      "surveyNo": "2",
+      "finalPlot": "FP-772",
+      "schemeId": "dholera_tp1",
+      "subSector": "TP 1A-2 (Kadipur / Bhadiyad Sector)",
+      "roadWidthM": 18,
+      "area": 5030.7
+    },
+    {
+      "surveyNo": "3",
+      "finalPlot": "FP-791",
+      "schemeId": "dholera_tp1",
+      "subSector": "TP 1A-2 (Kadipur / Bhadiyad Sector)",
+      "roadWidthM": 18,
+      "area": 6834.5
+    },
+    {
+      "surveyNo": "4",
+      "finalPlot": "D-70",
+      "schemeId": "dholera_tp1",
+      "subSector": "TP 1A-2 (Kadipur / Bhadiyad Sector)",
+      "roadWidthM": 18,
+      "area": 7798.7
+    }
+  ],
+  "umargadh": [
+    {
+      "surveyNo": "471",
+      "finalPlot": "FP-452",
+      "schemeId": "dholera_tp1",
+      "subSector": "TP 1B (City Center South & Central Plaza)",
+      "roadWidthM": 24,
+      "area": 3654
+    },
+    {
+      "surveyNo": "472",
+      "finalPlot": "FP-453",
+      "schemeId": "dholera_tp1",
+      "subSector": "TP 1B (City Center South & Central Plaza)",
+      "roadWidthM": 24,
+      "area": 14423.2
+    },
+    {
+      "surveyNo": "473",
+      "finalPlot": "",
+      "schemeId": "dholera_tp1",
+      "subSector": "TP 1B (City Center South & Central Plaza)",
+      "roadWidthM": 18,
+      "area": 2750.9
+    }
+  ],
+  "gogla": [
+    {
+      "surveyNo": "1",
+      "finalPlot": "FP-1094/2",
+      "schemeId": "dholera_tp1",
+      "subSector": "TP 1A-4 (Gogla Sector)",
+      "roadWidthM": 18,
+      "area": 7033.5
+    },
+    {
+      "surveyNo": "2",
+      "finalPlot": "FP-1028",
+      "schemeId": "dholera_tp1",
+      "subSector": "TP 1A-4 (Gogla Sector)",
+      "roadWidthM": 18,
+      "area": 5030.7
+    },
+    {
+      "surveyNo": "3",
+      "finalPlot": "FP-1029",
+      "schemeId": "dholera_tp1",
+      "subSector": "TP 1A-4 (Gogla Sector)",
+      "roadWidthM": 18,
+      "area": 6834.5
+    }
+  ],
+  "khun": [
+    {
+      "surveyNo": "55",
+      "finalPlot": "",
+      "schemeId": "dholera_tp1",
+      "subSector": "TP 1A-5 (City Center North Spine)",
+      "roadWidthM": 18,
+      "area": 5650
+    },
+    {
+      "surveyNo": "700",
+      "finalPlot": "",
+      "schemeId": "dholera_tp1",
+      "subSector": "TP 1A-5 (City Center North Spine)",
+      "roadWidthM": 18,
+      "area": 18708.3
+    },
+    {
+      "surveyNo": "701",
+      "finalPlot": "FP-663",
+      "schemeId": "dholera_tp1",
+      "subSector": "TP 1A-5 (City Center North Spine)",
+      "roadWidthM": 18,
+      "area": 3742.4
+    }
+  ],
+  "hebatpur": [
+    {
+      "surveyNo": "1",
+      "finalPlot": "FP-1861",
+      "schemeId": "dholera_tp2",
+      "subSector": "TP 2",
+      "roadWidthM": 18,
+      "area": 12845.3
+    },
+    {
+      "surveyNo": "01",
+      "finalPlot": "",
+      "schemeId": "dholera_tp2",
+      "subSector": "TP 2",
+      "roadWidthM": 18,
+      "area": 5224.5
+    },
+    {
+      "surveyNo": "2",
+      "finalPlot": "FP-1548/1",
+      "schemeId": "dholera_tp2",
+      "subSector": "TP 2",
+      "roadWidthM": 18,
+      "area": 7204.7
+    }
+  ],
+  "sangasar": [
+    {
+      "surveyNo": "1",
+      "finalPlot": "FP-370",
+      "schemeId": "dholera_tp3",
+      "subSector": "TP 3",
+      "roadWidthM": 18,
+      "area": 10944.1
+    },
+    {
+      "surveyNo": "2",
+      "finalPlot": "FP-790",
+      "schemeId": "dholera_tp3",
+      "subSector": "TP 3",
+      "roadWidthM": 12,
+      "area": 648.7
+    },
+    {
+      "surveyNo": "3",
+      "finalPlot": "FP-421",
+      "schemeId": "dholera_tp3",
+      "subSector": "TP 3",
+      "roadWidthM": 18,
+      "area": 4699.6
+    }
+  ],
+  "mundi": [
+    {
+      "surveyNo": "1",
+      "finalPlot": "FP-274/2",
+      "schemeId": "dholera_tp4",
+      "subSector": "TP 4",
+      "roadWidthM": 12,
+      "area": 8402.1
+    },
+    {
+      "surveyNo": "2",
+      "finalPlot": "FP-166/1",
+      "schemeId": "dholera_tp4",
+      "subSector": "TP 4",
+      "roadWidthM": 18,
+      "area": 80677.5
+    },
+    {
+      "surveyNo": "3",
+      "finalPlot": "D-7",
+      "schemeId": "dholera_tp4",
+      "subSector": "TP 4",
+      "roadWidthM": 18,
+      "area": 9036.4
+    }
+  ],
+  "bavaliyari": [
+    {
+      "surveyNo": "1",
+      "finalPlot": "FP-444/1",
+      "schemeId": "dholera_tp5",
+      "subSector": "TP 5",
+      "roadWidthM": 48,
+      "area": 101045.2
+    },
+    {
+      "surveyNo": "2",
+      "finalPlot": "FP-455",
+      "schemeId": "dholera_tp5",
+      "subSector": "TP 5",
+      "roadWidthM": 25,
+      "area": 7556
+    },
+    {
+      "surveyNo": "3",
+      "finalPlot": "FP-497/2",
+      "schemeId": "dholera_tp5",
+      "subSector": "TP 5",
+      "roadWidthM": 25,
+      "area": 3029.9
+    }
+  ],
+  "zankhi": [
+    {
+      "surveyNo": "10",
+      "finalPlot": "FP-10",
+      "schemeId": "dholera_tp6",
+      "subSector": "TP 6A (Airport City & CFS Hub)",
+      "roadWidthM": 30,
+      "area": 817486.2
+    },
+    {
+      "surveyNo": "11",
+      "finalPlot": "FP-11",
+      "schemeId": "dholera_tp6",
+      "subSector": "TP 6A (Airport City & CFS Hub)",
+      "roadWidthM": 25,
+      "area": 817486.2
+    },
+    {
+      "surveyNo": "12",
+      "finalPlot": "FP-12",
+      "schemeId": "dholera_tp6",
+      "subSector": "TP 6B (Cargo Airport Core & Logistics)",
+      "roadWidthM": 25,
+      "area": 685463.7
+    }
+  ],
+  "bhangadh": [
+    {
+      "surveyNo": "1",
+      "finalPlot": "FP-1",
+      "schemeId": "dholera_tp6",
+      "subSector": "TP 6A (Airport City & CFS Hub)",
+      "roadWidthM": 30
+    },
+    {
+      "surveyNo": "13",
+      "finalPlot": "FP-13",
+      "schemeId": "dholera_tp6",
+      "subSector": "TP 6A (Airport City & CFS Hub)",
+      "roadWidthM": 30,
+      "area": 817486.2
+    },
+    {
+      "surveyNo": "16",
+      "finalPlot": "FP-16",
+      "schemeId": "dholera_tp6",
+      "subSector": "TP 6A (Airport City & CFS Hub)",
+      "roadWidthM": 30,
+      "area": 48198.5
+    }
+  ]
+}

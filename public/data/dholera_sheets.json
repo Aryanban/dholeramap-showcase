@@ -1,0 +1,621 @@
+{
+  "source": "Gujarat Urban Development & DSIRDA Official Master Blueprints & Preliminary Town Planning Schemes",
+  "version": 3,
+  "totalSheets": 36,
+  "groups": [
+    {
+      "name": "Regional Overview & Framework",
+      "sectors": [
+        "Overview"
+      ]
+    },
+    {
+      "name": "Town Planning Scheme 1 (Residential R-1 & City Center)",
+      "sectors": [
+        "TP 1"
+      ]
+    },
+    {
+      "name": "Town Planning Scheme 2 (High-Tech Industrial & Activation)",
+      "sectors": [
+        "TP 2"
+      ]
+    },
+    {
+      "name": "Town Planning Scheme 3 (Heavy & General Industrial)",
+      "sectors": [
+        "TP 3"
+      ]
+    },
+    {
+      "name": "Town Planning Scheme 4 (Solar Park & Knowledge Corridor)",
+      "sectors": [
+        "TP 4"
+      ]
+    },
+    {
+      "name": "Town Planning Scheme 5 (Mega Industrial & Defense)",
+      "sectors": [
+        "TP 5"
+      ]
+    },
+    {
+      "name": "Town Planning Scheme 6 (Cargo Airport City & Logistics)",
+      "sectors": [
+        "TP 6"
+      ]
+    }
+  ],
+  "sectors": {
+    "Overview": [
+      "macro-land-use",
+      "macro-villages",
+      "macro-split"
+    ],
+    "TP 1": [
+      "tp1-master",
+      "tp1-1a1",
+      "tp1-1a2",
+      "tp1-1a3",
+      "tp1-1a4",
+      "tp1-1a5",
+      "tp1-1b"
+    ],
+    "TP 2": [
+      "tp2-master",
+      "tp2-2a",
+      "tp2-2b1",
+      "tp2-2b2",
+      "tp2-2b3",
+      "tp2-2b4a",
+      "tp2-2b4b",
+      "tp2-2b5a",
+      "tp2-2b5b"
+    ],
+    "TP 3": [
+      "tp3-master",
+      "tp3-3a",
+      "tp3-3b",
+      "tp3-3c1",
+      "tp3-3c2"
+    ],
+    "TP 4": [
+      "tp4-master",
+      "tp4-4a",
+      "tp4-4b1",
+      "tp4-4b2"
+    ],
+    "TP 5": [
+      "tp5-master",
+      "tp5-5a",
+      "tp5-5b",
+      "tp5-5c1",
+      "tp5-5c2"
+    ],
+    "TP 6": [
+      "tp6-master",
+      "tp6-6a",
+      "tp6-6b"
+    ]
+  },
+  "sheets": {
+    "tp1-master": {
+      "sid": "tp1-master",
+      "folder": "schemes",
+      "file": "dholera_tp1.jpg",
+      "sector": "TP 1",
+      "pocketId": "Master",
+      "kind": "overview",
+      "label": "Town Planning Scheme 1 \u2014 Residential R-1 & City Center (Master)",
+      "schemeId": "dholera_tp1",
+      "description": "Master Cadastral Blueprint (10,797.82 Ha) \u2014 Ambli, Kadipur, Bhadiyad, Gogla",
+      "width": 23840,
+      "height": 16840,
+      "url": "/maps/schemes/dholera_tp1.jpg"
+    },
+    "tp2-master": {
+      "sid": "tp2-master",
+      "folder": "schemes",
+      "file": "dholera_tp2.jpg",
+      "sector": "TP 2",
+      "pocketId": "Master",
+      "kind": "overview",
+      "label": "Town Planning Scheme 2 \u2014 High-Tech Industrial & Activation (Master)",
+      "schemeId": "dholera_tp2",
+      "description": "Activation Zone, ABCD Building, Tata Semiconductor Fab, Hebatpur, Gorasu",
+      "width": 23840,
+      "height": 16840,
+      "url": "/maps/schemes/dholera_tp2.jpg"
+    },
+    "tp3-master": {
+      "sid": "tp3-master",
+      "folder": "schemes",
+      "file": "dholera_tp3.jpg",
+      "sector": "TP 3",
+      "pocketId": "Master",
+      "kind": "overview",
+      "label": "Town Planning Scheme 3 \u2014 Heavy & General Industrial (Master)",
+      "schemeId": "dholera_tp3",
+      "description": "Heavy Manufacturing, General Industry, Engineering Hub, Dholera Central",
+      "width": 23840,
+      "height": 16840,
+      "url": "/maps/schemes/dholera_tp3.jpg"
+    },
+    "tp4-master": {
+      "sid": "tp4-master",
+      "folder": "schemes",
+      "file": "dholera_tp4.jpg",
+      "sector": "TP 4",
+      "pocketId": "Master",
+      "kind": "overview",
+      "label": "Town Planning Scheme 4 \u2014 Solar Park & Knowledge Corridor (Master)",
+      "schemeId": "dholera_tp4",
+      "description": "Solar Energy Cluster, Knowledge & IT Corridor, Green Tech Hub",
+      "width": 23840,
+      "height": 16840,
+      "url": "/maps/schemes/dholera_tp4.jpg"
+    },
+    "tp5-master": {
+      "sid": "tp5-master",
+      "folder": "schemes",
+      "file": "dholera_tp5.jpg",
+      "sector": "TP 5",
+      "pocketId": "Master",
+      "kind": "overview",
+      "label": "Town Planning Scheme 5 \u2014 Mega Industrial & Defense Aerospace (Master)",
+      "schemeId": "dholera_tp5",
+      "description": "Mega Industrial Zone, Defense & Aviation Corridor, Heavy Manufacturing",
+      "width": 23840,
+      "height": 16840,
+      "url": "/maps/schemes/dholera_tp5.jpg"
+    },
+    "tp6-master": {
+      "sid": "tp6-master",
+      "folder": "schemes",
+      "file": "dholera_tp6.jpg",
+      "sector": "TP 6",
+      "pocketId": "Master",
+      "kind": "overview",
+      "label": "Town Planning Scheme 6 \u2014 Logistics CFS & Cargo Airport (Master)",
+      "schemeId": "dholera_tp6",
+      "description": "International Cargo Airport City, Container Freight Station, Logistics Core",
+      "width": 20220,
+      "height": 14304,
+      "url": "/maps/schemes/dholera_tp6.jpg"
+    },
+    "macro-land-use": {
+      "sid": "macro-land-use",
+      "folder": "schemes",
+      "file": "macro_land_use.jpg",
+      "sector": "Overview",
+      "pocketId": "Master",
+      "kind": "overview",
+      "label": "Dholera SIR \u2014 Master Land Use & Regional Plan (920 sq km)",
+      "schemeId": "macro_land_use",
+      "description": "Macro development framework covering 920 sq km and all 22 villages",
+      "width": 2526,
+      "height": 3573,
+      "url": "/maps/schemes/macro_land_use.jpg"
+    },
+    "macro-villages": {
+      "sid": "macro-villages",
+      "folder": "schemes",
+      "file": "macro_villages.jpg",
+      "sector": "Overview",
+      "pocketId": "Master",
+      "kind": "overview",
+      "label": "Dholera SIR \u2014 22 Revenue Villages Cadastral Map",
+      "schemeId": "macro_villages",
+      "description": "Official Revenue Department village boundaries, gamtals and survey limits",
+      "width": 5960,
+      "height": 4210,
+      "url": "/maps/schemes/macro_villages.jpg"
+    },
+    "macro-split": {
+      "sid": "macro-split",
+      "folder": "schemes",
+      "file": "macro_split.jpg",
+      "sector": "Overview",
+      "pocketId": "Master",
+      "kind": "overview",
+      "label": "Dholera SIR \u2014 Sub-Scheme Division Map (TP 1A to TP 6B)",
+      "schemeId": "macro_split",
+      "description": "Official town planning sub-scheme boundaries and gazetted areas",
+      "width": 2142,
+      "height": 2772,
+      "url": "/maps/schemes/macro_split.jpg"
+    },
+    "tp1-1a1": {
+      "sid": "tp1-1a1",
+      "folder": "schemes",
+      "file": "dholera_tp1.jpg",
+      "sector": "TP 1",
+      "pocketId": "TP 1A-1",
+      "kind": "pocket",
+      "label": "Town Planning Scheme 1A-1 \u2014 Preliminary Scheme (Ambli)",
+      "schemeId": "1A1_Preliminary",
+      "description": "Sanctioned Preliminary Scheme (1,227.04 Ha) \u2014 Ambli Village & Residential Core",
+      "width": 23840,
+      "height": 16840,
+      "url": "/maps/schemes/dholera_tp1.jpg"
+    },
+    "tp1-1a2": {
+      "sid": "tp1-1a2",
+      "folder": "schemes",
+      "file": "dholera_tp1.jpg",
+      "sector": "TP 1",
+      "pocketId": "TP 1A-2",
+      "kind": "pocket",
+      "label": "Town Planning Scheme 1A-2 \u2014 Preliminary Scheme (Kadipur & Bhadiyad)",
+      "schemeId": "1A2_Preliminary",
+      "description": "Sanctioned Preliminary Scheme (1,403.89 Ha) \u2014 Kadipur & Bhadiyad Sector",
+      "width": 23840,
+      "height": 16840,
+      "url": "/maps/schemes/dholera_tp1.jpg"
+    },
+    "tp2-2b1": {
+      "sid": "tp2-2b1",
+      "folder": "schemes",
+      "file": "dholera_tp2.jpg",
+      "sector": "TP 2",
+      "pocketId": "TP 2B-1",
+      "kind": "pocket",
+      "label": "Town Planning Scheme 2B-1 \u2014 High-Tech Industrial (Part 1)",
+      "schemeId": "2B1_Preliminary",
+      "description": "High-Tech Industrial zone, road network 55m and 70m, survey allocations",
+      "width": 23840,
+      "height": 16840,
+      "url": "/maps/schemes/dholera_tp2.jpg"
+    },
+    "tp2-2b2": {
+      "sid": "tp2-2b2",
+      "folder": "schemes",
+      "file": "dholera_tp2.jpg",
+      "sector": "TP 2",
+      "pocketId": "TP 2B-2",
+      "kind": "pocket",
+      "label": "Town Planning Scheme 2B-2 \u2014 High-Tech Industrial (Part 2)",
+      "schemeId": "2B2_Preliminary",
+      "description": "Industrial manufacturing corridor, TP road junctions, reconstituted plots",
+      "width": 23840,
+      "height": 16840,
+      "url": "/maps/schemes/dholera_tp2.jpg"
+    },
+    "tp2-2b3": {
+      "sid": "tp2-2b3",
+      "folder": "schemes",
+      "file": "dholera_tp2.jpg",
+      "sector": "TP 2",
+      "pocketId": "TP 2B-3",
+      "kind": "pocket",
+      "label": "Town Planning Scheme 2B-3 \u2014 Activation Zone & Tata Semiconductor Fab",
+      "schemeId": "2B3_Preliminary",
+      "description": "Hebatpur, Gorasu, ABCD Building, Tata Fab campus, final plots FP-1 to FP-500",
+      "width": 23840,
+      "height": 16840,
+      "url": "/maps/schemes/dholera_tp2.jpg"
+    },
+    "tp3-3a": {
+      "sid": "tp3-3a",
+      "folder": "schemes",
+      "file": "dholera_tp3.jpg",
+      "sector": "TP 3",
+      "pocketId": "TP 3A",
+      "kind": "pocket",
+      "label": "Town Planning Scheme 3A \u2014 Heavy Industrial Corridor",
+      "schemeId": "3A_Preliminary",
+      "description": "Heavy industrial layouts, chemical and engineering plots, logistics corridors",
+      "width": 23840,
+      "height": 16840,
+      "url": "/maps/schemes/dholera_tp3.jpg"
+    },
+    "tp3-3b": {
+      "sid": "tp3-3b",
+      "folder": "schemes",
+      "file": "dholera_tp3.jpg",
+      "sector": "TP 3",
+      "pocketId": "TP 3B",
+      "kind": "pocket",
+      "label": "Town Planning Scheme 3B \u2014 General Industrial & Ancillary",
+      "schemeId": "3B_Preliminary",
+      "description": "General industrial fabrication, warehousing, auxiliary road access",
+      "width": 23840,
+      "height": 16840,
+      "url": "/maps/schemes/dholera_tp3.jpg"
+    },
+    "tp4-4b1": {
+      "sid": "tp4-4b1",
+      "folder": "schemes",
+      "file": "dholera_tp4.jpg",
+      "sector": "TP 4",
+      "pocketId": "TP 4B-1",
+      "kind": "pocket",
+      "label": "Town Planning Scheme 4B-1 \u2014 Solar Park & Green Energy",
+      "schemeId": "4B1_Preliminary",
+      "description": "Renewable solar energy park, transmission corridors, green tech plots",
+      "width": 23840,
+      "height": 16840,
+      "url": "/maps/schemes/dholera_tp4.jpg"
+    },
+    "tp5-5a": {
+      "sid": "tp5-5a",
+      "folder": "schemes",
+      "file": "dholera_tp5.jpg",
+      "sector": "TP 5",
+      "pocketId": "TP 5A",
+      "kind": "pocket",
+      "label": "Town Planning Scheme 5A \u2014 Defense Aerospace Hub",
+      "schemeId": "5A_Preliminary",
+      "description": "Defense manufacturing zone, aerospace corridor, mega fabrication yards",
+      "width": 23840,
+      "height": 16840,
+      "url": "/maps/schemes/dholera_tp5.jpg"
+    },
+    "tp5-5b": {
+      "sid": "tp5-5b",
+      "folder": "schemes",
+      "file": "dholera_tp5.jpg",
+      "sector": "TP 5",
+      "pocketId": "TP 5B",
+      "kind": "pocket",
+      "label": "Town Planning Scheme 5B \u2014 Heavy Manufacturing & Mega Yard",
+      "schemeId": "5B_Preliminary",
+      "description": "Heavy engineering, mega ship/container support yards, express highway frontage",
+      "width": 23840,
+      "height": 16840,
+      "url": "/maps/schemes/dholera_tp5.jpg"
+    },
+    "tp6-6a": {
+      "sid": "tp6-6a",
+      "folder": "schemes",
+      "file": "dholera_tp6.jpg",
+      "sector": "TP 6",
+      "pocketId": "TP 6A",
+      "kind": "pocket",
+      "label": "Town Planning Scheme 6A \u2014 Airport City & CFS Hub",
+      "schemeId": "6A_Preliminary",
+      "description": "Dholera International Cargo Airport city, CFS logistics, customs bonded warehousing",
+      "width": 20220,
+      "height": 14304,
+      "url": "/maps/schemes/dholera_tp6.jpg"
+    },
+    "tp2-2a": {
+      "sid": "tp2-2a",
+      "folder": "schemes",
+      "file": "dholera_tp2.jpg",
+      "sector": "TP 2",
+      "pocketId": "TP 2A",
+      "kind": "pocket",
+      "label": "Town Planning Scheme 2A \u2014 Activation Core & Administration",
+      "schemeId": "dholera_tp2a",
+      "description": "Central administrative district, civic core, residential activation",
+      "width": 23840,
+      "height": 16840,
+      "url": "/maps/schemes/dholera_tp2.jpg"
+    },
+    "tp4-4a": {
+      "sid": "tp4-4a",
+      "folder": "schemes",
+      "file": "dholera_tp4.jpg",
+      "sector": "TP 4",
+      "pocketId": "TP 4A",
+      "kind": "pocket",
+      "label": "Town Planning Scheme 4A \u2014 Knowledge Corridor & IT City",
+      "schemeId": "dholera_tp4a",
+      "description": "Universities, research centers, biotechnology, IT/ITeS campuses",
+      "width": 23840,
+      "height": 16840,
+      "url": "/maps/schemes/dholera_tp4.jpg"
+    },
+    "tp1-1a3": {
+      "sid": "tp1-1a3",
+      "folder": "schemes",
+      "file": "dholera_tp1.jpg",
+      "sector": "TP 1",
+      "pocketId": "TP 1A-3",
+      "kind": "pocket",
+      "label": "Town Planning Scheme 1A-3 \u2014 Residential North-East (Bhimtalav & Valinda)",
+      "schemeId": "tp1_1a3_submap",
+      "description": "Draft Town Planning Scheme (3,976.67 Ha) \u2014 Bhimtalav & Valinda Periphery",
+      "width": 23840,
+      "height": 16840,
+      "url": "/maps/schemes/dholera_tp1.jpg"
+    },
+    "tp1-1a4": {
+      "sid": "tp1-1a4",
+      "folder": "schemes",
+      "file": "dholera_tp1.jpg",
+      "sector": "TP 1",
+      "pocketId": "TP 1A-4",
+      "kind": "pocket",
+      "label": "Town Planning Scheme 1A-4 \u2014 Residential Sector (Gogla)",
+      "schemeId": "tp1_1a4_submap",
+      "description": "Draft Town Planning Scheme (1,648.04 Ha) \u2014 Gogla Village & Commercial East",
+      "width": 23840,
+      "height": 16840,
+      "url": "/maps/schemes/dholera_tp1.jpg"
+    },
+    "tp1-1a5": {
+      "sid": "tp1-1a5",
+      "folder": "schemes",
+      "file": "dholera_tp1.jpg",
+      "sector": "TP 1",
+      "pocketId": "TP 1A-5",
+      "kind": "pocket",
+      "label": "Town Planning Scheme 1A-5 \u2014 Commercial Core & North Spine (Khun)",
+      "schemeId": "tp1_1a5_submap",
+      "description": "Draft Town Planning Scheme (1,027.35 Ha) \u2014 Khun & Expressway Commercial Spine",
+      "width": 23840,
+      "height": 16840,
+      "url": "/maps/schemes/dholera_tp1.jpg"
+    },
+    "tp1-1b": {
+      "sid": "tp1-1b",
+      "folder": "schemes",
+      "file": "dholera_tp1.jpg",
+      "sector": "TP 1",
+      "pocketId": "TP 1B",
+      "kind": "pocket",
+      "label": "Town Planning Scheme 1B \u2014 City Center South & Central Plaza (Umargadh)",
+      "schemeId": "tp1_1b_submap",
+      "description": "Draft Town Planning Scheme (1,514.83 Ha) \u2014 Umargadh & Central Civic Plaza",
+      "width": 23840,
+      "height": 16840,
+      "url": "/maps/schemes/dholera_tp1.jpg"
+    },
+    "tp2-2b4a": {
+      "sid": "tp2-2b4a",
+      "folder": "schemes",
+      "file": "dholera_tp2.jpg",
+      "sector": "TP 2",
+      "pocketId": "TP 2B-4A",
+      "kind": "pocket",
+      "label": "Town Planning Scheme 2B-4A \u2014 Gorasu West Industrial Sector",
+      "schemeId": "dholera_tp2",
+      "description": "Official Statutory Sub-Scheme (948.30 Ha) \u2014 Gorasu West Industrial Sector",
+      "width": 23840,
+      "height": 16840,
+      "url": "/maps/schemes/dholera_tp2.jpg"
+    },
+    "tp2-2b4b": {
+      "sid": "tp2-2b4b",
+      "folder": "schemes",
+      "file": "dholera_tp2.jpg",
+      "sector": "TP 2",
+      "pocketId": "TP 2B-4B",
+      "kind": "pocket",
+      "label": "Town Planning Scheme 2B-4B \u2014 Gorasu Northwest & Riverfront",
+      "schemeId": "dholera_tp2",
+      "description": "Official Statutory Sub-Scheme (886.45 Ha) \u2014 Gorasu Northwest & Riverfront Sector",
+      "width": 23840,
+      "height": 16840,
+      "url": "/maps/schemes/dholera_tp2.jpg"
+    },
+    "tp2-2b5a": {
+      "sid": "tp2-2b5a",
+      "folder": "schemes",
+      "file": "dholera_tp2.jpg",
+      "sector": "TP 2",
+      "pocketId": "TP 2B-5A",
+      "kind": "pocket",
+      "label": "Town Planning Scheme 2B-5A \u2014 Hebatpur North Sector",
+      "schemeId": "dholera_tp2",
+      "description": "Official Statutory Sub-Scheme (634.10 Ha) \u2014 Hebatpur North Industrial Sector",
+      "width": 23840,
+      "height": 16840,
+      "url": "/maps/schemes/dholera_tp2.jpg"
+    },
+    "tp2-2b5b": {
+      "sid": "tp2-2b5b",
+      "folder": "schemes",
+      "file": "dholera_tp2.jpg",
+      "sector": "TP 2",
+      "pocketId": "TP 2B-5B",
+      "kind": "pocket",
+      "label": "Town Planning Scheme 2B-5B \u2014 Hebatpur South Sector",
+      "schemeId": "dholera_tp2",
+      "description": "Official Statutory Sub-Scheme (784.64 Ha) \u2014 Hebatpur South Industrial Sector",
+      "width": 23840,
+      "height": 16840,
+      "url": "/maps/schemes/dholera_tp2.jpg"
+    },
+    "tp3-3c1": {
+      "sid": "tp3-3c1",
+      "folder": "schemes",
+      "file": "dholera_tp3.jpg",
+      "sector": "TP 3",
+      "pocketId": "TP 3C-1",
+      "kind": "pocket",
+      "label": "Town Planning Scheme 3C-1 \u2014 Engineering Hub & Central Corridor",
+      "schemeId": "dholera_tp3",
+      "description": "Official Statutory Sub-Scheme (541.10 Ha) \u2014 Engineering Hub & Central Corridor",
+      "width": 23840,
+      "height": 16840,
+      "url": "/maps/schemes/dholera_tp3.jpg"
+    },
+    "tp3-3c2": {
+      "sid": "tp3-3c2",
+      "folder": "schemes",
+      "file": "dholera_tp3.jpg",
+      "sector": "TP 3",
+      "pocketId": "TP 3C-2",
+      "kind": "pocket",
+      "label": "Town Planning Scheme 3C-2 \u2014 Heavy Manufacturing & Logistics",
+      "schemeId": "dholera_tp3",
+      "description": "Official Statutory Sub-Scheme (461.50 Ha) \u2014 Heavy Manufacturing & Logistics Sector",
+      "width": 23840,
+      "height": 16840,
+      "url": "/maps/schemes/dholera_tp3.jpg"
+    },
+    "tp4-4b2": {
+      "sid": "tp4-4b2",
+      "folder": "schemes",
+      "file": "dholera_tp4.jpg",
+      "sector": "TP 4",
+      "pocketId": "TP 4B-2",
+      "kind": "pocket",
+      "label": "Town Planning Scheme 4B-2 \u2014 Renewable Energy Zone & Mahadevpura",
+      "schemeId": "dholera_tp4",
+      "description": "Official Statutory Sub-Scheme (879.80 Ha) \u2014 Renewable Solar Energy Park & Mahadevpura",
+      "width": 23840,
+      "height": 16840,
+      "url": "/maps/schemes/dholera_tp4.jpg"
+    },
+    "tp5-5c1": {
+      "sid": "tp5-5c1",
+      "folder": "schemes",
+      "file": "dholera_tp5.jpg",
+      "sector": "TP 5",
+      "pocketId": "TP 5C-1",
+      "kind": "pocket",
+      "label": "Town Planning Scheme 5C-1 \u2014 Mega Industrial Zone (Part 1)",
+      "schemeId": "dholera_tp5",
+      "description": "Official Statutory Sub-Scheme (385.20 Ha) \u2014 Mega Industrial Zone Part 1",
+      "width": 23840,
+      "height": 16840,
+      "url": "/maps/schemes/dholera_tp5.jpg"
+    },
+    "tp5-5c2": {
+      "sid": "tp5-5c2",
+      "folder": "schemes",
+      "file": "dholera_tp5.jpg",
+      "sector": "TP 5",
+      "pocketId": "TP 5C-2",
+      "kind": "pocket",
+      "label": "Town Planning Scheme 5C-2 \u2014 Aviation & Mega Fabrication (Part 2)",
+      "schemeId": "dholera_tp5",
+      "description": "Official Statutory Sub-Scheme (313.20 Ha) \u2014 Aviation & Mega Fabrication Part 2",
+      "width": 23840,
+      "height": 16840,
+      "url": "/maps/schemes/dholera_tp5.jpg"
+    },
+    "tp6-6b": {
+      "sid": "tp6-6b",
+      "folder": "schemes",
+      "file": "dholera_tp6.jpg",
+      "sector": "TP 6",
+      "pocketId": "TP 6B",
+      "kind": "pocket",
+      "label": "Town Planning Scheme 6B \u2014 International Cargo Airport Core & Logistics",
+      "schemeId": "dholera_tp6",
+      "description": "Official Statutory Sub-Scheme (739.40 Ha) \u2014 Cargo Airport City & Aviation Logistics Hub",
+      "width": 20220,
+      "height": 14304,
+      "url": "/maps/schemes/dholera_tp6.jpg"
+    }
+  },
+  "zoneOverview": {
+    "sid": "macro-land-use",
+    "folder": "schemes",
+    "file": "macro_land_use.jpg",
+    "sector": "Overview",
+    "pocketId": "Master",
+    "kind": "overview",
+    "label": "Dholera SIR \u2014 Master Land Use & Regional Plan (920 sq km)",
+    "schemeId": "macro_land_use",
+    "description": "Macro development framework covering 920 sq km and all 22 villages",
+    "width": 2526,
+    "height": 3573,
+    "url": "/maps/schemes/macro_land_use.jpg"
+  }
+}
